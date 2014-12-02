@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace SellingReport.Models
 {
@@ -11,5 +8,6 @@ namespace SellingReport.Models
         [Key]
         public int ProductId { get; set; }
         public string Name { get; set; }
+        public byte[] Image { get; set; }
     }
 }

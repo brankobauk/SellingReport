@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SellingReport.Context;
+using SellingReport.Models;
 
 namespace SellingReport.Controllers
 {
@@ -29,11 +30,12 @@ namespace SellingReport.Controllers
         // POST: /Product/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Product product)
         {
             try
             {
-                // TODO: Add insert logic here
+                db.Products.Add(product);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
