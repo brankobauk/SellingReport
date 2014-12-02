@@ -23,7 +23,6 @@ namespace SellingReport.Controllers
         public ActionResult Create()
         {
             return View();
-        
         }
 
         //
