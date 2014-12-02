@@ -50,19 +50,24 @@ namespace SellingReport.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var productToEdit = db.Products.FirstOrDefault(p => p.ProductId == id);
+            return View(productToEdit);
         }
 
         //
         // POST: /Product/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Product product)
         {
             try
             {
-                // TODO: Add update logic here
-
+                var productToEdit = db.Products.FirstOrDefault(p => p.ProductId == id);
+                if (productToEdit != null)
+                {
+                    productToEdit.Name = product.Name;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch
