@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -58,14 +59,32 @@ namespace SellingReport.Controllers
         // POST: /Product/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, Product product)
+        public ActionResult Edit(Product product, HttpPostedFileBase file)
         {
+            byte[] image = null;
             try
             {
-                var productToEdit = db.Products.FirstOrDefault(p => p.ProductId == id);
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    string path;
+                    if (fileName != null) 
+                    {
+                        path = Path.Combine(Server.MapPath("~/App_Data/ProductImages"), fileName);
+                        file.SaveAs(path);
+                        image = System.IO.File.ReadAllBytes(path);
+                        System.IO.File.Delete(path);
+                    }
+                    
+                }
+                var productToEdit = db.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
                 if (productToEdit != null)
                 {
                     productToEdit.Name = product.Name;
+                    if (image != null)
+                    {
+                        productToEdit.Image = image;
+                    }
                     db.SaveChanges();
                 }
                 return RedirectToAction("Index");

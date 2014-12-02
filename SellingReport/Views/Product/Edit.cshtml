@@ -6,7 +6,11 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm(ViewContext.RouteData.GetRequiredString("action"),
+    ViewContext.RouteData.GetRequiredString("controller"),
+    FormMethod.Post,
+    new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -18,11 +22,28 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
+        
         <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
+        <div class="editor-label">
+            <label> Product Image</label>
+        </div>
+        <div class="editor-field">
+            @{
+    var base64 = Convert.ToBase64String(Model.Image);
+    var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+            }
 
+            <img src="@imgSrc" width="100" />
+        </div>
+
+
+
+        <div class="editor-field">
+            <input type="file" name="file" />
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>
