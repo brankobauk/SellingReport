@@ -70,7 +70,7 @@ namespace SellingReport.Controllers
                     string path;
                     if (fileName != null) 
                     {
-                        path = Path.Combine(Server.MapPath("~/App_Data/ProductImages"), fileName);
+                        path = Path.Combine(Server.MapPath("~/App_Data"), fileName);
                         file.SaveAs(path);
                         image = System.IO.File.ReadAllBytes(path);
                         System.IO.File.Delete(path);
