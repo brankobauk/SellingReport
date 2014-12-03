@@ -754,3 +754,35 @@ tr.pager td {
             margin: 0;
         }
 }
+#header {
+    width: 98%;
+    margin: 20px auto 0;
+    background: none;
+}
+
+#header table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-image: url("/Content/themes/Images/header-background.png");
+    height: 27px;
+    color: white;
+}
+#header table th {
+    padding: 3px;
+}
+#header table th.month {
+    text-align: left;
+    width: 20%
+}
+#header table th.date {
+    text-align: left;
+    width: 20%
+}
+#header table th.menu-button {
+    text-align: right;
+    width: 60%
+}
+body.no-background {
+    background: none;
+}
