@@ -57,7 +57,9 @@
     </Compile>
     <Compile Include="Models\Holiday.cs" />
     <Compile Include="Models\Month.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Product.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\ProductSellingPlan.cs" />
     <Compile Include="Models\ProductSellingReport.cs" />
     <Compile Include="Models\Year.cs" />
