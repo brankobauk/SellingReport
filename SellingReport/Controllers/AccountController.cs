@@ -9,7 +9,7 @@ using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using SellingReport.Filters;
-using SellingReport.Models;
+using SellingReport.Models.Models;
 
 namespace SellingReport.Controllers
 {

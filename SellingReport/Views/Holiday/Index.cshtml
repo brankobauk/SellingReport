@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SellingReport.Models.Models.Holiday>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Day)
+        </th>
+        <th></th>
+    </tr>
+
+@if (Model != null) { 
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Day)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.HolidayId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.HolidayId })
+            </td>
+        </tr>
+    }
+}
+</table>

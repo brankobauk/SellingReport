@@ -184,16 +184,17 @@
     <Compile Include="Context\SellingReportContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductSellingPlanController.cs" />
+    <Compile Include="Controllers\ProductSellingReportController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DropDownHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +256,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\Holiday\general.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -315,12 +317,28 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Holiday\Index.cshtml" />
+    <Content Include="Views\Holiday\Create.cshtml" />
+    <Content Include="Views\ProductSellingPlan\Index.cshtml" />
+    <Content Include="Views\ProductSellingPlan\Create.cshtml" />
+    <Content Include="Views\ProductSellingPlan\Edit.cshtml" />
+    <Content Include="Views\ProductSellingReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\ProductImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SellingReport.BusinessLogic\SellingReport.BusinessLogic.csproj">
+      <Project>{3c7b35a9-1421-4ba9-a91d-e98ae417b0fb}</Project>
+      <Name>SellingReport.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SellingReport.Models\SellingReport.Models.csproj">
+      <Project>{a3f039cc-bf88-489d-9453-c9028782fcc0}</Project>
+      <Name>SellingReport.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

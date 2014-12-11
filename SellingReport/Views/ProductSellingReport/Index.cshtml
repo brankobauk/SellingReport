@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SellingReport.Models.Models.ProductSellingReport>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoldPieces)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null) {
+    foreach (var item in Model)
+     {
+         <tr>
+             <td>
+                 @Html.DisplayFor(modelItem => item.ProductId)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.CountryId)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.SoldPieces)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Date)
+             </td>
+             <td>
+                 @Html.ActionLink("Edit", "Edit", new {id = item.ProductSellingReportId}) |
+                 @Html.ActionLink("Delete", "Delete", new {id = item.ProductSellingReportId})
+             </td>
+         </tr>
+     }
+    }
+
+</table>

@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Optimization;
+using SellingReport.Models.Models;
 
 namespace SellingReport
 {
@@ -38,6 +39,10 @@ namespace SellingReport
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/holiday").Include(
+                    "~/Scripts/Holiday/general.js"
+                ));
         }
     }
 }

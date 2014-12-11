@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellingReport", "SellingReport\SellingReport.csproj", "{BD34F095-EBEA-4E2B-A733-66CA93AB507E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellingReport.BusinessLogic", "SellingReport.BusinessLogic\SellingReport.BusinessLogic.csproj", "{3C7B35A9-1421-4BA9-A91D-E98AE417B0FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellingReport.Models", "SellingReport.Models\SellingReport.Models.csproj", "{A3F039CC-BF88-489D-9453-C9028782FCC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BD34F095-EBEA-4E2B-A733-66CA93AB507E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD34F095-EBEA-4E2B-A733-66CA93AB507E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD34F095-EBEA-4E2B-A733-66CA93AB507E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C7B35A9-1421-4BA9-A91D-E98AE417B0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7B35A9-1421-4BA9-A91D-E98AE417B0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7B35A9-1421-4BA9-A91D-E98AE417B0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7B35A9-1421-4BA9-A91D-E98AE417B0FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F039CC-BF88-489D-9453-C9028782FCC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F039CC-BF88-489D-9453-C9028782FCC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F039CC-BF88-489D-9453-C9028782FCC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F039CC-BF88-489D-9453-C9028782FCC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
