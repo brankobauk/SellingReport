@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using SellingReport.Context;
 using SellingReport.Models.Models;
 
 namespace SellingReport.Controllers
 {
+    [Authorize]
     public class CountryController : Controller
     {
         readonly SellingReportContext _db = new SellingReportContext();
@@ -73,7 +71,7 @@ namespace SellingReport.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 

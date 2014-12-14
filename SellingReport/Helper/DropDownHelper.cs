@@ -11,16 +11,31 @@ namespace SellingReport.Helper
     {
         public IEnumerable<SelectListItem> GetMonthsListForDropDown()
         {
-            
+            var textInfo = new CultureInfo("en-US", false).TextInfo;
+                    
+            if (DateTimeFormatInfo
+                .CurrentInfo != null)
+            { 
+                return DateTimeFormatInfo
+                    .CurrentInfo
+                    .MonthNames
+                    .Select((monthName, index) =>
+                        new SelectListItem
+                           {
+                               Value = (index + 1).ToString(CultureInfo.InvariantCulture),
+                               Text = textInfo.ToTitleCase(monthName)
+                           }).Where(p=>p.Text != "");
+
+            }
             return DateTimeFormatInfo
-               .InvariantInfo
-               .MonthNames
-               .Select((monthName, index) => new SelectListItem
-               {
-                   Value = (index + 1).ToString(CultureInfo.InvariantCulture),
-                   Text = monthName
-               });
-                
+                .InvariantInfo
+                .MonthNames
+                .Select((monthName, index) =>
+                    new SelectListItem
+                    {
+                        Value = (index + 1).ToString(CultureInfo.InvariantCulture),
+                        Text = monthName
+                    }).Where(p => p.Text != "");
         }
 
         public IEnumerable<SelectListItem> GetYearsListForDropDown()

@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using SellingReport.Context;
 using SellingReport.Helper;
+using SellingReport.Models.Models;
+using SellingReport.Models.ViewModels;
 
 namespace SellingReport.Controllers
 {
+    [Authorize]
     public class ProductSellingReportController : Controller
     {
         readonly SellingReportContext _db = new SellingReportContext();
@@ -17,41 +18,43 @@ namespace SellingReport.Controllers
 
         public ActionResult Index()
         {
-            var productSellingReport = _db.ProductSellingReports.ToList();
-            return View();
+            var productSellingReport = _db.ProductSellingReports.Where(p => p.CountryId == p.Country.CountryId && p.ProductId == p.Product.ProductId).Include(p => p.Product).Include(p => p.Country).OrderByDescending(p => p.Date).ThenBy(p => p.CountryId).ThenBy(p => p.ProductId);
+            return View(productSellingReport);
         }
 
-        //
-        // GET: /ProductSellingReport/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         //
         // GET: /ProductSellingReport/Create
 
         public ActionResult Create()
         {
-            return View();
+            var products = _dropDownHelper.GetProductsListForDropDown(_db.Products);
+            var countries = _dropDownHelper.GetCountryListForDropDown(_db.Countries);
+            var productSellingReport = new ProductSellingReportViewModel
+            {
+                ProductSellingReport = new ProductSellingReport(),
+                Countries = countries,
+                Products = products
+            };
+            return View(productSellingReport);
         }
 
         //
         // POST: /ProductSellingReport/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ProductSellingReportViewModel productSellingReportViewModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                _db.ProductSellingReports.Add(productSellingReportViewModel.ProductSellingReport);
+                _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
@@ -60,18 +63,35 @@ namespace SellingReport.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var productSellingReportToEdit = _db.ProductSellingReports.FirstOrDefault(p => p.ProductSellingReportId == id);
+            var products = _dropDownHelper.GetProductsListForDropDown(_db.Products);
+            var countries = _dropDownHelper.GetCountryListForDropDown(_db.Countries);
+            var productSellingReportViewModel = new ProductSellingReportViewModel
+            {
+                ProductSellingReport = productSellingReportToEdit,
+                Countries = countries,
+                Products = products
+            };
+            return View(productSellingReportViewModel);
         }
 
         //
         // POST: /ProductSellingReport/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ProductSellingReportViewModel productSellingReportViewModel)
         {
             try
             {
-                // TODO: Add update logic here
+                var productSellingReportToEdit = _db.ProductSellingReports.FirstOrDefault(p => p.ProductSellingReportId == id);
+                if (productSellingReportToEdit != null)
+                {
+                    productSellingReportToEdit.ProductId = productSellingReportViewModel.ProductSellingReport.ProductId;
+                    productSellingReportToEdit.CountryId = productSellingReportViewModel.ProductSellingReport.CountryId;
+                    productSellingReportToEdit.Date = productSellingReportViewModel.ProductSellingReport.Date;
+                    productSellingReportToEdit.SoldPieces = productSellingReportViewModel.ProductSellingReport.SoldPieces;
+                    _db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -86,25 +106,11 @@ namespace SellingReport.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            var productSellingReportToDelete = _db.ProductSellingReports.FirstOrDefault(p => p.ProductSellingReportId == id);
+            _db.ProductSellingReports.Remove(productSellingReportToDelete);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        //
-        // POST: /ProductSellingReport/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

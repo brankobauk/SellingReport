@@ -1,0 +1,56 @@
+﻿@model SellingReport.Models.ViewModels.ProductSellingReportViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ProductSellingReport</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingReport.ProductId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingReport.ProductId, Model.Products)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingReport.CountryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingReport.CountryId, Model.Countries)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingReport.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingReport.Date)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingReport.SoldPieces)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingReport.SoldPieces)
+            @Html.ValidationMessageFor(model => model.ProductSellingReport.SoldPieces)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/productsellingreport")
+}

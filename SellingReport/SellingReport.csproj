@@ -189,6 +189,9 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductSellingPlanController.cs" />
     <Compile Include="Controllers\ProductSellingReportController.cs" />
+    <Compile Include="Controllers\VariableHolidayController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,6 +274,14 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ProductSellingReport\general.js" />
+    <Content Include="Scripts\VariableHoliday\general.js" />
+    <Content Include="Views\Holiday\Edit.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ProductSellingReport\Create.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\_ReportLayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -317,12 +328,16 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
-    <Content Include="Views\Holiday\Index.cshtml" />
     <Content Include="Views\Holiday\Create.cshtml" />
     <Content Include="Views\ProductSellingPlan\Index.cshtml" />
     <Content Include="Views\ProductSellingPlan\Create.cshtml" />
     <Content Include="Views\ProductSellingPlan\Edit.cshtml" />
     <Content Include="Views\ProductSellingReport\Index.cshtml" />
+    <Content Include="Views\Holiday\Index.cshtml" />
+    <Content Include="Views\VariableHoliday\Index.cshtml" />
+    <Content Include="Views\VariableHoliday\Create.cshtml" />
+    <Content Include="Views\VariableHoliday\Edit.cshtml" />
+    <Content Include="Views\ProductSellingReport\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\ProductImages\" />

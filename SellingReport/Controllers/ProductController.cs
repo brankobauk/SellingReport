@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,13 +7,14 @@ using SellingReport.Models.Models;
 
 namespace SellingReport.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
-        SellingReportContext db = new SellingReportContext();
+        SellingReportContext _db = new SellingReportContext();
 
         public ActionResult Index()
         {
-            var product = db.Products.ToList();
+            var product = _db.Products.ToList();
             return View(product);
         }
 
@@ -35,8 +34,8 @@ namespace SellingReport.Controllers
         {
             try
             {
-                db.Products.Add(product);
-                db.SaveChanges();
+                _db.Products.Add(product);
+                _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -51,7 +50,7 @@ namespace SellingReport.Controllers
 
         public ActionResult Edit(int id)
         {
-            var productToEdit = db.Products.FirstOrDefault(p => p.ProductId == id);
+            var productToEdit = _db.Products.FirstOrDefault(p => p.ProductId == id);
             return View(productToEdit);
         }
 
@@ -77,7 +76,7 @@ namespace SellingReport.Controllers
                     }
                     
                 }
-                var productToEdit = db.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
+                var productToEdit = _db.Products.FirstOrDefault(p => p.ProductId == product.ProductId);
                 if (productToEdit != null)
                 {
                     productToEdit.Name = product.Name;
@@ -85,7 +84,7 @@ namespace SellingReport.Controllers
                     {
                         productToEdit.Image = image;
                     }
-                    db.SaveChanges();
+                    _db.SaveChanges();
                 }
                 return RedirectToAction("Index");
             }
@@ -100,25 +99,11 @@ namespace SellingReport.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            var productToDelete = _db.Products.FirstOrDefault(p => p.ProductId == id);
+            _db.Products.Remove(productToDelete);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        //
-        // POST: /Product/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

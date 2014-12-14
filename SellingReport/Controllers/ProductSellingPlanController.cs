@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using SellingReport.Helper;
 using SellingReport.Context;
@@ -11,6 +8,7 @@ using SellingReport.Models.ViewModels;
 
 namespace SellingReport.Controllers
 {
+    [Authorize]
     public class ProductSellingPlanController : Controller
     {
         readonly SellingReportContext _db = new SellingReportContext();
@@ -20,7 +18,7 @@ namespace SellingReport.Controllers
 
         public ActionResult Index()
         {
-            var productSellingPlan = _db.ProductSellingPlans.ToList();
+            var productSellingPlan = _db.ProductSellingPlans.Where(p => p.CountryId == p.Country.CountryId && p.ProductId == p.Product.ProductId).Include(p => p.Product).Include(p => p.Country).OrderByDescending(p => p.Year).ThenByDescending(p => p.Month).ThenBy(p=>p.CountryId).ThenBy(p=>p.ProductId);
             return View(productSellingPlan);
         }
 
@@ -35,7 +33,7 @@ namespace SellingReport.Controllers
             var countries = _dropDownHelper.GetCountryListForDropDown(_db.Countries);
             var months = _dropDownHelper.GetMonthsListForDropDown();
             var years = _dropDownHelper.GetYearsListForDropDown();
-            var productSellingPlan = new ProductSellingPlanViewModel()
+            var productSellingPlan = new ProductSellingPlanViewModel
             {
                 ProductSellingPlan = new ProductSellingPlan(),
                 Month = months,
@@ -76,7 +74,7 @@ namespace SellingReport.Controllers
                 var countries = _dropDownHelper.GetCountryListForDropDown(_db.Countries);
                 var months = _dropDownHelper.GetMonthsListForDropDown();
                 var years = _dropDownHelper.GetYearsListForDropDown();
-                var productSellingPlan = new ProductSellingPlanViewModel()
+                var productSellingPlan = new ProductSellingPlanViewModel
                 {
                     ProductSellingPlan = productSellingReportPlanToEdit,
                     Month = months,
@@ -86,11 +84,7 @@ namespace SellingReport.Controllers
                 };
                 return View(productSellingPlan);
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-            
+            return RedirectToAction("Index");
         }
 
         //
@@ -125,25 +119,12 @@ namespace SellingReport.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            var productSellingReportToDelete = _db.ProductSellingPlans.FirstOrDefault(p => p.ProductSellingPlanId == id);
+            _db.ProductSellingPlans.Remove(productSellingReportToDelete);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        //
-        // POST: /ProductSellingPlan/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

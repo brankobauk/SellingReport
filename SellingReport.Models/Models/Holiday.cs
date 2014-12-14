@@ -5,7 +5,6 @@ namespace SellingReport.Models.Models
 {
     public class Holiday
     {
-        public Holiday() { }
         [Key]
         public int HolidayId { get; set; }
         public int CountryId { get; set; }

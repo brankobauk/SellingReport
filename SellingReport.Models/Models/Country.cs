@@ -9,6 +9,7 @@ namespace SellingReport.Models.Models
         {
             Holidays = new List<Holiday>();
             ProductSellingPlans = new List<ProductSellingPlan>();
+            VariableHolidays = new List<VariableHoliday>();
         }
         [Key]
         public int CountryId { get; set; }
@@ -17,6 +18,7 @@ namespace SellingReport.Models.Models
 
         private ICollection<Holiday> Holidays { get; set; }
         private ICollection<ProductSellingPlan> ProductSellingPlans { get; set; }
+        private ICollection<VariableHoliday> VariableHolidays { get; set; }
 
     }
 }

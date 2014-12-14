@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SellingReport.Models.Models
 {
-    public class ProductSellingReport
+    public class VariableHoliday
     {
-        public int ProductSellingReportId { get; set; }
-        public int ProductId { get; set; }
+        [Key]
+        public int VariableHolidayId { get; set; }
         public int CountryId { get; set; }
-        public int SoldPieces { get; set; }
+        public string Name { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime Date { get; set; }
-        public virtual Country Country { get; set; }
-        public virtual Product Product { get; set; }
 
+        public virtual Country Country { get; set; }
     }
 }

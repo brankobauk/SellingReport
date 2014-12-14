@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SellingReport.Models.Models.ProductSellingPlan>
+﻿@using System.Globalization
+@model IEnumerable<SellingReport.Models.Models.ProductSellingPlan>
 
 @{
     ViewBag.Title = "Index";
@@ -12,13 +13,13 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductId)
+            @Html.DisplayNameFor(model => model.Product)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Pieces)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CountryId)
+            @Html.DisplayNameFor(model => model.Country)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Month)
@@ -33,16 +34,19 @@
         foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductId)
+                @Html.DisplayFor(modelItem => item.Product.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pieces)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CountryId)
+                @Html.DisplayFor(modelItem => item.Country.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Month)
+                @{
+                    var textInfo = new CultureInfo("en-US", false).TextInfo;
+                    @textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Month))
+                 }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Year)

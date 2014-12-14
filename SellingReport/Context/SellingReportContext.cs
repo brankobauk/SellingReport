@@ -15,6 +15,7 @@ namespace SellingReport.Context
         public DbSet<Holiday> Holidays { get; set; }
         public DbSet<ProductSellingPlan> ProductSellingPlans { get; set; }
         public DbSet<ProductSellingReport> ProductSellingReports { get; set; }
+        public DbSet<VariableHoliday> VariableHolidays { get; set; }
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SellingReportContext, Configuration>());

@@ -43,6 +43,13 @@ namespace SellingReport
             bundles.Add(new StyleBundle("~/bundles/holiday").Include(
                     "~/Scripts/Holiday/general.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/bundles/productsellingreport").Include(
+                    "~/Scripts/ProductSellingReport/general.js"
+                ));
+            bundles.Add(new StyleBundle("~/bundles/variableholiday").Include(
+                    "~/Scripts/VariableHoliday/general.js"
+                ));
         }
     }
 }
