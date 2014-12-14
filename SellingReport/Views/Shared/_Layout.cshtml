@@ -13,7 +13,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <p class="site-title">@Html.ActionLink("Selling Data Reports", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -21,13 +21,17 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Tables", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Reports", "Index", "ProductSellingReport")</li>
-                            <li>@Html.ActionLink("Plans", "Index", "ProductSellingPlan")</li>
-                            <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                            <li>@Html.ActionLink("Countries", "Index", "Country")</li>
-                            <li>@Html.ActionLink("Holidays", "Index", "Holiday")</li>
-                            <li>@Html.ActionLink("Variable Holidays", "Index", "VariableHoliday")</li>
+                            <li>&nbsp;</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Tables", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Reports", "Index", "ProductSellingReport")</li>
+                                <li>@Html.ActionLink("Plans", "Index", "ProductSellingPlan")</li>
+                                <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                                <li>@Html.ActionLink("Countries", "Index", "Country")</li>
+                                <li>@Html.ActionLink("Holidays", "Index", "Holiday")</li>
+                                <li>@Html.ActionLink("Variable Holidays", "Index", "VariableHoliday")</li>
+                            }
                         </ul>
                     </nav>
                 </div>
@@ -42,7 +46,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - Soft.si, All Rights Reserved.</p>
                 </div>
             </div>
         </footer>
