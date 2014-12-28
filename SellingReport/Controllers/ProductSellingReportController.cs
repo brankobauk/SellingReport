@@ -49,8 +49,21 @@ namespace SellingReport.Controllers
         [HttpPost]
         public ActionResult Create(ProductSellingReportViewModel productSellingReportViewModel)
         {
-            
-                _db.ProductSellingReports.Add(productSellingReportViewModel.ProductSellingReport);
+            var date = productSellingReportViewModel.ProductSellingReport.Date;
+            if (date < Convert.ToDateTime("1.1.2010"))
+            {
+                date = Convert.ToDateTime("1.1.2010");
+            }
+            var reportToAdd = new ProductSellingReport()
+            {
+                ProductId = productSellingReportViewModel.ProductSellingReport.ProductId,
+                CountryId = productSellingReportViewModel.ProductSellingReport.CountryId,
+                Date = date,
+                SoldPieces = productSellingReportViewModel.ProductSellingReport.SoldPieces,
+                SoldValue = productSellingReportViewModel.ProductSellingReport.SoldValue
+
+            };
+                _db.ProductSellingReports.Add(reportToAdd);
                 _db.SaveChanges();
 
                 return RedirectToAction("Index");
