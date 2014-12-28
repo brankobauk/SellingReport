@@ -4,7 +4,7 @@
     if ($('#ProductSellingReport_Date').val == "") {
         $('#ProductSellingReport_Date').val(Date.now());
     }
-    $('#ProductSellingReport_Date').prop('readOnly', true);
+    $("#ProductSellingReport_SoldValue").removeAttr("data-val");
     $(".date").datepicker({
         dateFormat: 'dd.mm.yy',
         minDate: '1.1.2010',

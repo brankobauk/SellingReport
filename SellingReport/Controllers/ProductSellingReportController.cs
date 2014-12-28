@@ -49,12 +49,17 @@ namespace SellingReport.Controllers
         [HttpPost]
         public ActionResult Create(ProductSellingReportViewModel productSellingReportViewModel)
         {
-            
+            try
+            {
                 _db.ProductSellingReports.Add(productSellingReportViewModel.ProductSellingReport);
                 _db.SaveChanges();
 
                 return RedirectToAction("Index");
-            
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         //
