@@ -14,7 +14,7 @@
                 };
                 var result = false;
                 try {
-                    $.datepicker.parseDate('dd.mm.yyyy', value);
+                    $.datepicker.parseDate('dd.mm.yy', value);
                     result = true;
                 } catch (err) {
                     result = false;
