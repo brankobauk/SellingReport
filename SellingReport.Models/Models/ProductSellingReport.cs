@@ -15,7 +15,6 @@ namespace SellingReport.Models.Models
         public int CountryId { get; set; }
         public int SoldPieces { get; set; }
         public decimal SoldValue { get; set; }
-        [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime Date { get; set; }
         public virtual Country Country { get; set; }
