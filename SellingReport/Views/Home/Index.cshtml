@@ -1,14 +1,19 @@
-﻿@{
+﻿@using System.Globalization
+@model SellingReport.Models.ViewModels.SellingReportTableViewModel
+@{
     ViewBag.Title = "Home Page";
 }
-
+@{
+    var date = Convert.ToDateTime(Model.Date);
+    var textInfo = new CultureInfo("en-US", false).TextInfo;
+}
 <div id="header">
     <div id="header-table">
         <table>
             <thead>
                 <tr>
-                    <th class="month">AUGUST</th>
-                    <th class="date">18.8.2014</th>
+                    <th class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(date.Month))</th>
+                    <th class="date">@Model.Date</th>
                     <th class="menu-button"></th>
                 </tr>
             </thead>
@@ -16,41 +21,63 @@
     </div>
 </div>
 <div id="main">
-    http://www.codeproject.com/Tips/844709/Pivot-Table-Using-Linq-Entity-and-SQL-Server-R-for
     <div id="main-table">
         <table>
-            <thead>
-                <tr>
-                    <th class="odd" style="width: 50px;" >Skupaj EUR</th>
-                    <th>312</th>
-                    <th class="odd">35,00</th>
-                    <th>23</th>
-                    <th class="odd">7,37</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="width: 50px;">JÄGERMEISTER</td>
-                    <td>55</td>
-                    <td>19</td>
-                    <td>13</td>
-                    <td>23,66</td>
-                </tr>
-                <tr>
-                    <td>Jack Daniels</td>
-                    <td>54</td>
-                    <td>18</td>
-                    <td>12</td>
-                    <td>22,66</td>
-                </tr>
-                <tr>
-                    <td>Black Label</td>
-                    <td>56</td>
-                    <td>20</td>
-                    <td>15</td>
-                    <td>25,66</td>
-                </tr>
-            </tbody>
+            @{
+                var i = 0;
+                foreach (var line in Model.SellingReportTable)
+                {
+                    var cssClassPlan = "";
+                    var cssClass = "";
+                    var cssClassSum = "";
+                    if (i > 0 && i != Model.SellingReportTable.Count - 1)
+                    {
+                        cssClassPlan = "green"; 
+                        if (!line.OnPlan)
+                        {
+                            cssClassPlan = "red"; 
+                        }
+                    }
+                    else if (i == Model.SellingReportTable.Count - 1)
+                    {
+                        cssClassPlan = "green right";
+                        cssClass = "right"; 
+                        if (!line.OnPlan)
+                        {
+                            cssClassPlan = "red right";
+                            cssClass = "right";
+                        }
+                        cssClassSum = "right";
+                    }
+                    else
+                    {
+                        cssClassPlan = "left";
+                        cssClass = "left"; 
+                    }
+                    <tr>
+                        <td class="@cssClassSum">@line.Name</td>
+                        <td class="@cssClass">@line.MonthlyPlan</td>
+                        <td class="@cssClass">@line.MonthlyPlanToDate</td>
+                        <td class="@cssClassPlan">@line.SoldPieces</td>
+                        <td class="@cssClassPlan">@line.SoldPercentage</td>
+                        <td>
+                            @{
+                                if (line.Image != null)
+                                {
+                                    var base64 = Convert.ToBase64String(line.Image);
+                                    var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                    <img src="@imgSrc" width="100" />
+                                }
+                            }
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
         </table>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/home")
+}

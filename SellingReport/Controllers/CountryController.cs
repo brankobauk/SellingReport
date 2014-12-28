@@ -65,6 +65,7 @@ namespace SellingReport.Controllers
                 {
                     countryToEdit.Name = country.Name;
                     countryToEdit.Code = country.Code;
+                    countryToEdit.IsOrdthodox = country.IsOrdthodox;
                     _db.SaveChanges();
                 }
                 return RedirectToAction("Index");

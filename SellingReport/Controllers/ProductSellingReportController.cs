@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using SellingReport.Context;
@@ -32,7 +33,10 @@ namespace SellingReport.Controllers
             var countries = _dropDownHelper.GetCountryListForDropDown(_db.Countries);
             var productSellingReport = new ProductSellingReportViewModel
             {
-                ProductSellingReport = new ProductSellingReport(),
+                ProductSellingReport = new ProductSellingReport()
+                {
+                    Date = DateTime.Now.Date
+                },
                 Countries = countries,
                 Products = products
             };
@@ -90,6 +94,7 @@ namespace SellingReport.Controllers
                     productSellingReportToEdit.CountryId = productSellingReportViewModel.ProductSellingReport.CountryId;
                     productSellingReportToEdit.Date = productSellingReportViewModel.ProductSellingReport.Date;
                     productSellingReportToEdit.SoldPieces = productSellingReportViewModel.ProductSellingReport.SoldPieces;
+                    productSellingReportToEdit.SoldValue = productSellingReportViewModel.ProductSellingReport.SoldValue;
                     _db.SaveChanges();
                 }
 

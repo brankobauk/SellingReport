@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.SoldPieces)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoldValue)
+        </th>
         
         <th></th>
     </tr>
@@ -41,6 +44,9 @@
              </td>
              <td>
                  @Html.DisplayFor(modelItem => item.SoldPieces)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.SoldValue)
              </td>
              <td>
                  @Html.ActionLink("Edit", "Edit", new {id = item.ProductSellingReportId}) |

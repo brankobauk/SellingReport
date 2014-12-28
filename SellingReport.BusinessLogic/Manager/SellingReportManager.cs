@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SellingReport.BusinessLogic
+namespace SellingReport.BusinessLogic.Manager
 {
-    public class Class1
+    public class SellingReportManager
     {
     }
 }

@@ -40,7 +40,13 @@
             @Html.EditorFor(model => model.ProductSellingReport.SoldPieces)
             @Html.ValidationMessageFor(model => model.ProductSellingReport.SoldPieces)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingReport.SoldValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingReport.SoldValue)
+            @Html.ValidationMessageFor(model => model.ProductSellingReport.SoldValue)
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>

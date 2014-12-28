@@ -103,6 +103,7 @@ namespace SellingReport.Controllers
                     productSellingReportPlanToEdit.Pieces = productSellingReportPlanViewModel.ProductSellingPlan.Pieces;
                     productSellingReportPlanToEdit.Month = productSellingReportPlanViewModel.ProductSellingPlan.Month;
                     productSellingReportPlanToEdit.Year = productSellingReportPlanViewModel.ProductSellingPlan.Year;
+                    productSellingReportPlanToEdit.PlannedValue = productSellingReportPlanViewModel.ProductSellingPlan.PlannedValue;
                     _db.SaveChanges();
                 }
 

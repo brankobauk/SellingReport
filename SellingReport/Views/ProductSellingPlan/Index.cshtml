@@ -13,49 +13,55 @@
 <table>
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Product)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Pieces)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Month)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayNameFor(model => model.PlannedValue)
         </th>
         <th></th>
     </tr>
 
     @if (Model != null) {
         foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pieces)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country.Name)
-            </td>
-            <td>
-                @{
-                    var textInfo = new CultureInfo("en-US", false).TextInfo;
-                    @textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Month))
-                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ProductSellingPlanId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ProductSellingPlanId })
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @{
+            var textInfo = new CultureInfo("en-US", false).TextInfo;
+            @textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Month))
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pieces)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlannedValue)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ProductSellingPlanId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ProductSellingPlanId })
+                </td>
+            </tr>
         }
     }
 </table>

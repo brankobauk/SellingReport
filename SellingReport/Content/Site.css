@@ -806,7 +806,16 @@ body.no-background {
     text-align: center;
     padding: 2px;
 }
-select {
-    
+#main table td.red {
+    color: red;
+}
+#main table td.green {
+    color: green;
+}
+#main table td.left {
+    text-align: left;
+}
+#main table td.right {
+    text-align: right;
 }
 

@@ -28,6 +28,13 @@
             @Html.EditorFor(model => model.Code)
             @Html.ValidationMessageFor(model => model.Code)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsOrdthodox)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsOrdthodox)
+            @Html.ValidationMessageFor(model => model.IsOrdthodox)
+        </div>
 
         <p>
             <input type="submit" value="Create" />

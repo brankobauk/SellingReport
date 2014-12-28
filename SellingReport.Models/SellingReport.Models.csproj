@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
@@ -61,11 +62,13 @@
     </Compile>
     <Compile Include="Models\ProductSellingPlan.cs" />
     <Compile Include="Models\ProductSellingReport.cs" />
+    <Compile Include="Models\SellingReportTable.cs" />
     <Compile Include="Models\VariableHoliday.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HolidayViewModel.cs" />
     <Compile Include="ViewModels\ProductSellingPlanViewModel.cs" />
     <Compile Include="ViewModels\ProductSellingReportViewModel.cs" />
+    <Compile Include="ViewModels\SellingReportTableViewModel.cs" />
     <Compile Include="ViewModels\VariableHolidayViewModel.cs">
       <SubType>Code</SubType>
     </Compile>

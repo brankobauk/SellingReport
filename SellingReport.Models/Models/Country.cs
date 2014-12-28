@@ -15,6 +15,7 @@ namespace SellingReport.Models.Models
         public int CountryId { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
+        public bool IsOrdthodox { get; set; }
 
         private ICollection<Holiday> Holidays { get; set; }
         private ICollection<ProductSellingPlan> ProductSellingPlans { get; set; }

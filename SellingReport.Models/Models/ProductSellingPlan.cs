@@ -13,6 +13,7 @@ namespace SellingReport.Models.Models
         public int ProductSellingPlanId { get; set; }
         public int ProductId { get; set; }
         public int Pieces { get; set; }
+        public decimal PlannedValue { get; set; }
         public int CountryId { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
