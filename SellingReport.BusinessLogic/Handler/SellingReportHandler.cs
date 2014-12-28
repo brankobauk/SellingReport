@@ -71,7 +71,7 @@ namespace SellingReport.BusinessLogic.Handler
                 var productSoldPiecesToDate = 0;
                 foreach (var itemReport in productSellingReportToDate)
                 {
-                    productSoldPiecesToDate = +itemReport.SoldPieces;
+                    productSoldPiecesToDate += itemReport.SoldPieces;
                 }
                 if (productSellingPlan != null)
                 {

@@ -9,9 +9,11 @@ namespace SellingReport.BusinessLogic.Handler
 {
     public class DateHandler
     {
-        public DateTime GetLastActivityDate()
+        public string GetLastActivityDate(IEnumerable<ProductSellingReport> productSellingReport)
         {
-            return DateTime.Now;
+            var sellingReport = productSellingReport.OrderByDescending(p => p.Date).FirstOrDefault();
+            if (sellingReport != null) return sellingReport.Date.ToLongDateString();
+            return DateTime.Now.ToLongDateString();
         }
     }
 }
