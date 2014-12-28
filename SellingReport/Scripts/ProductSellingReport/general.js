@@ -1,6 +1,10 @@
 ﻿$(document).ready(function () {
     $("#ProductSellingReport_Date").addClass("date");
     $('#ProductSellingReport_Date').prop('readOnly', true);
+    if ($('#ProductSellingReport_Date').val == "") {
+        $('#ProductSellingReport_Date').val(Date.now());
+    }
+    $('#ProductSellingReport_Date').prop('readOnly', true);
     $(".date").datepicker({
         dateFormat: 'dd.mm.yy',
         minDate: '1.1.2010',
