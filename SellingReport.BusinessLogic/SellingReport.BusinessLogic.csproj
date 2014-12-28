@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Handler\DateHandler.cs" />
+    <Compile Include="Handler\DateHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Handler\HolidayHandler.cs" />
     <Compile Include="Handler\SellingReportHandler.cs" />
     <Compile Include="Manager\HolidayManager.cs" />
