@@ -54,22 +54,25 @@
                         cssClassPlan = "left";
                         cssClass = "left"; 
                     }
+                    var cssClassPlanPercentage = cssClassPlan + " percentage";
                     <tr>
                         <td class="@cssClassSum">@line.Name</td>
                         <td class="@cssClass">@line.MonthlyPlan</td>
                         <td class="@cssClass">@line.MonthlyPlanToDate</td>
                         <td class="@cssClassPlan">@line.SoldPieces</td>
-                        <td class="@cssClassPlan">@line.SoldPercentage</td>
-                        <td>
+                        <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
+                        <td style="position:relative;">
                             @{
                                 if (line.Image != null)
                                 {
                                     var base64 = Convert.ToBase64String(line.Image);
                                     var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                    <img src="@imgSrc" width="100" /> 
+                                    <img src="@imgSrc" width="100" style="position:relative;" />
                                 }
                             }
+                            <div class="overlay-top"></div>
                         </td>
+
                     </tr>
                     i++;
                 }

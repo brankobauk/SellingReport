@@ -47,7 +47,7 @@ namespace SellingReport.BusinessLogic.Handler
                 sellingReports.Where(
                     p => p.Date >= new DateTime(startDate.Year, startDate.Month, 1) && p.Date <= startDate).ToList();
 
-            productSellingReports = sellingReports.Where(p => p.Date == date).ToList();
+            productSellingReports = sellingReports.Where(p => p.Date == date).OrderBy(p=>p.ProductId).ToList();
             productSellingPlans = productSellingPlans.Where(p => p.Month == date.Month && p.Year == date.Year).ToList();
 
 
