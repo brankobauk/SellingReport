@@ -13,5 +13,6 @@ namespace SellingReport.Models.ViewModels
         public ProductSellingReport ProductSellingReport { get; set; }
         public IEnumerable<SelectListItem> Countries { get; set; }
         public IEnumerable<SelectListItem> Products { get; set; }
+        public IEnumerable<HolidayDates> HolidayDates { get; set; }
     }
 }

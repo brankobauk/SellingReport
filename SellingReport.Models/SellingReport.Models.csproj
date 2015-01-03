@@ -57,6 +57,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Holiday.cs" />
+    <Compile Include="Models\HolidayDates.cs" />
     <Compile Include="Models\Product.cs">
       <SubType>Code</SubType>
     </Compile>

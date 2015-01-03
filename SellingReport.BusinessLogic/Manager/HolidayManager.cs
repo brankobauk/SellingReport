@@ -43,7 +43,8 @@ namespace SellingReport.BusinessLogic.Manager
             if (p <= 31) return new DateTime(year, month, p);
             p = p - 31;
             month = 4;
-            return new DateTime(year, month, p);
+            var easterMonday =  new DateTime(year, month, p);
+            return easterMonday.AddDays(1);
         }
 
         public int GetWorkingDaysTillNow(DateTime date, List<DateTime> holidays)

@@ -67,7 +67,7 @@
         <tr>
             <td colspan="6">
                 @Html.PagedListPager(Model, page => Url.Action("Index", new {page, pageSize = Model.PageSize}))
-                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Clients
+                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
             </td>
         </tr>
     }

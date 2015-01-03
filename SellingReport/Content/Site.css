@@ -1022,4 +1022,6 @@ body.no-background {
   background-color: #ffffff;
 }
 
-
+div.hidden {
+    display: none;
+}

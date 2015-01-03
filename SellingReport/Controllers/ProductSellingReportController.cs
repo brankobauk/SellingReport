@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
+using SellingReport.BusinessLogic.Handler;
 using SellingReport.Context;
 using SellingReport.Helper;
 using SellingReport.Models.Models;
@@ -15,6 +18,7 @@ namespace SellingReport.Controllers
     {
         readonly SellingReportContext _db = new SellingReportContext();
         private readonly DropDownHelper _dropDownHelper = new DropDownHelper();
+        private readonly HolidayHandler _holidayHandler = new HolidayHandler();
         //
         // GET: /ProductSellingReport/
 
@@ -38,14 +42,40 @@ namespace SellingReport.Controllers
         {
             var products = _dropDownHelper.GetProductsListForDropDown(_db.Products);
             var countries = _dropDownHelper.GetCountryListForDropDown(_db.Countries);
+            var holidays = _db.Holidays.ToList();
+            var holidayDates = new List<HolidayDates>();
+            foreach (var country in _db.Countries.ToList())
+            {
+                var countryId = Convert.ToInt32(country.CountryId);
+                holidays = holidays.Where(p => p.CountryId == countryId).ToList();
+                var holidayDatesString = "";
+                foreach (var item in holidays)
+                {
+                    if (holidayDatesString == "")
+                    {
+                        holidayDatesString += item.Day.ToString(CultureInfo.InvariantCulture).PadLeft(2, '0') + "." + item.Month.ToString(CultureInfo.InvariantCulture).PadLeft(2, '0') + ".";
+                    }
+                    else
+                    {
+                        holidayDatesString += "," + item.Day.ToString(CultureInfo.InvariantCulture).PadLeft(2, '0') + "." + item.Month.ToString(CultureInfo.InvariantCulture).PadLeft(2, '0') + ".";
+                    }
+                }
+                for (var i = 2010; i <= DateTime.Now.Year; i++) {
+                    holidayDatesString += "," + _holidayHandler.GetEaster(i, country.IsOrdthodox).ToString("dd.MM.yyyy");
+                }
+                
+                var holiday = new HolidayDates()
+                {
+                    CountryId = countryId,
+                    HolidayDatesString = holidayDatesString
+                };
+                holidayDates.Add(holiday);
+            }
             var productSellingReport = new ProductSellingReportViewModel
             {
-                ProductSellingReport = new ProductSellingReport()
-                {
-                    Date = DateTime.Now.Date
-                },
                 Countries = countries,
-                Products = products
+                Products = products,
+                HolidayDates = holidayDates
             };
             return View(productSellingReport);
         }

@@ -1,9 +1,11 @@
 ﻿@model SellingReport.Models.ViewModels.ProductSellingPlanViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Plan";
 }
-
+@{
+    Html.EnableClientValidation(false);
+}
 <h2>Edit</h2>
 
 @using (Html.BeginForm()) {

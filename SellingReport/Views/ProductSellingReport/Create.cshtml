@@ -52,7 +52,11 @@
         </p>
     </fieldset>
 }
-
+@foreach (var item in Model.HolidayDates)
+{
+    
+    <div id="country-@item.CountryId" class="hidden">@item.HolidayDatesString</div>   
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

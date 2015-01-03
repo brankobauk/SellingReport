@@ -1,9 +1,12 @@
-﻿@model SellingReport.Models.ViewModels.ProductSellingPlanViewModel
+﻿@using System.Globalization
+@model SellingReport.Models.ViewModels.ProductSellingPlanViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Plan";
 }
-
+@{
+    Html.EnableClientValidation(false);
+}
 <h2>Create</h2>
 
 @using (Html.BeginForm()) {
@@ -29,13 +32,14 @@
             @Html.LabelFor(model => model.ProductSellingPlan.Month)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(x => x.ProductSellingPlan.Month, Model.Month)
+            @{var textInfo = new CultureInfo("en-US", false).TextInfo;}
+            @Html.DropDownListFor(x => x.ProductSellingPlan.Month, Model.Month, textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month)))
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.ProductSellingPlan.Year)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(x => x.ProductSellingPlan.Year, Model.Year)
+            @Html.DropDownListFor(x => x.ProductSellingPlan.Year, Model.Year, DateTime.Now.Year.ToString(CultureInfo.InvariantCulture))
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.ProductSellingPlan.Pieces)
