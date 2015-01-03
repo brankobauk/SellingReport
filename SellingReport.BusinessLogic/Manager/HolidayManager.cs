@@ -64,7 +64,7 @@ namespace SellingReport.BusinessLogic.Manager
                 {
                     if (nextDay == date)
                     {
-                        workingDaysTillNow = i - nonWorkingDays;
+                        workingDaysTillNow = i+1 - nonWorkingDays;
                     }
                 }
                 else
