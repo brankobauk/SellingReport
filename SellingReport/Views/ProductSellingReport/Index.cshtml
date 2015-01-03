@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SellingReport.Models.Models.ProductSellingReport>
+﻿@using PagedList.Mvc
+@model PagedList.PagedList<SellingReport.Models.Models.ProductSellingReport>
 
 @{
     ViewBag.Title = "Index";
@@ -12,19 +13,19 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
+            Country
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Product)
+            Product
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SoldPieces)
+            SoldPieces
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SoldValue)
+            Sold Value
         </th>
         
         <th></th>
@@ -54,6 +55,11 @@
              </td>
          </tr>
      }
+    <tr>
+        <td colspan="6">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new {page, pageSize = Model.PageSize}))
+            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Clients
+        </td>
+    </tr>
     }
-
 </table>

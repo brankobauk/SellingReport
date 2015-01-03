@@ -50,6 +50,9 @@ namespace SellingReport
             bundles.Add(new StyleBundle("~/bundles/variableholiday").Include(
                     "~/Scripts/VariableHoliday/general.js"
                 ));
+            bundles.Add(new StyleBundle("~/bundles/home/report").Include(
+                   "~/Scripts/Home/report.js"
+               ));
             bundles.Add(new StyleBundle("~/bundles/home").Include(
                    "~/Scripts/Home/general.js"
                ));

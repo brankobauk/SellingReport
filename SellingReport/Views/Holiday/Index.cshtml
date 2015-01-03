@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
-@model IEnumerable<SellingReport.Models.Models.Holiday>
+@using PagedList.Mvc
+@model PagedList.PagedList<SellingReport.Models.Models.Holiday>
 
 @{
     ViewBag.Title = "Index";
@@ -13,13 +14,13 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
+            Country
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Day)
+           Day
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Month)
+            Month
         </th>
         <th></th>
     </tr>
@@ -43,6 +44,12 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.HolidayId })
         </td>
     </tr>
-}
+    }
+    <tr>
+        <td colspan="4">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Clients
+        </td>
+    </tr>
 
 </table>

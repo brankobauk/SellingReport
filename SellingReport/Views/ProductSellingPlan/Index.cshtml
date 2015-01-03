@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
-@model IEnumerable<SellingReport.Models.Models.ProductSellingPlan>
+@using PagedList.Mvc
+@model PagedList.PagedList<SellingReport.Models.Models.ProductSellingPlan>
 
 @{
     ViewBag.Title = "Index";
@@ -13,22 +14,22 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Month)
+            Month
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Year)
+            Year
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
+            Country
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Product)
+            Product
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pieces)
+            Pieces
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PlannedValue)
+            PlannedValue
         </th>
         <th></th>
     </tr>
@@ -63,5 +64,11 @@
                 </td>
             </tr>
         }
+        <tr>
+            <td colspan="6">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new {page, pageSize = Model.PageSize}))
+                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Clients
+            </td>
+        </tr>
     }
 </table>

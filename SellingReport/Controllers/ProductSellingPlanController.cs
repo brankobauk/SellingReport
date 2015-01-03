@@ -1,10 +1,12 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using SellingReport.Helper;
 using SellingReport.Context;
 using SellingReport.Models.Models;
 using SellingReport.Models.ViewModels;
+using PagedList;
 
 namespace SellingReport.Controllers
 {
@@ -18,8 +20,14 @@ namespace SellingReport.Controllers
 
         public ActionResult Index()
         {
+            var page = Convert.ToInt32(Request.QueryString["page"]);
+            if (page == 0)
+            {
+                page = 1;
+            }
             var productSellingPlan = _db.ProductSellingPlans.Where(p => p.CountryId == p.Country.CountryId && p.ProductId == p.Product.ProductId).Include(p => p.Product).Include(p => p.Country).OrderByDescending(p => p.Year).ThenByDescending(p => p.Month).ThenBy(p=>p.CountryId).ThenBy(p=>p.ProductId);
-            return View(productSellingPlan);
+            var pagedProductSellingPlan = new PagedList<ProductSellingPlan>(productSellingPlan, page, 20);
+            return View(pagedProductSellingPlan);
         }
 
         

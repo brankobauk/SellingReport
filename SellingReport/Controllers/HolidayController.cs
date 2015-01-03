@@ -6,6 +6,7 @@ using SellingReport.Context;
 using SellingReport.Helper;
 using SellingReport.Models.Models;
 using SellingReport.Models.ViewModels;
+using PagedList;
 
 namespace SellingReport.Controllers
 {
@@ -17,8 +18,14 @@ namespace SellingReport.Controllers
 
         public ActionResult Index()
         {
+            var page = Convert.ToInt32(Request.QueryString["page"]);
+            if (page == 0)
+            {
+                page = 1;
+            }
             var holidays = _db.Holidays.Where(p => p.CountryId == p.Country.CountryId).Include(p => p.Country).OrderBy(p=>p.CountryId);
-            return View(holidays);
+            var pagedHolidays = new PagedList<Holiday>(holidays, page, 20);
+            return View(pagedHolidays);
         }
 
         //
