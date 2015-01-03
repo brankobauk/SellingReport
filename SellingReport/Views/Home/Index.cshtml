@@ -11,11 +11,13 @@
             //}
             //i++;
         }
+    <li><a href="#AllMarkets" id="0">All Markets</a></li>
     </ul>
 
     @foreach (var item in Model)
     {
         <div id="@item.Name"></div>
+        <div id="AllMarkets"></div>
     }
 </div>
 @section Scripts {

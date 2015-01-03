@@ -819,6 +819,9 @@ body.no-background {
     text-align: center;
     padding: 2px;
 }
+#main table td.header {
+    font-weight: bold;
+}
 #main table td.red {
     color: red;
 }
