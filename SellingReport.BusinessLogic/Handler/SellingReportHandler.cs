@@ -93,7 +93,7 @@ namespace SellingReport.BusinessLogic.Handler
                     };
                     sellingReportTable.Add(sellingReport);
 
-                    productSellingPlanTotalValue += productSellingPlanTotalValue + itemMonthlyPlan;
+                    productSellingPlanTotalValue += itemMonthlyPlan;
                 }
             }
 
