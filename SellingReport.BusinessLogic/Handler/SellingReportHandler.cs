@@ -63,7 +63,6 @@ namespace SellingReport.BusinessLogic.Handler
             };
             sellingReportTable.Add(sellingReportHeader);
 
-            var productSellingPlanTotalValue = 0;
             foreach (var item in productSellingReports)
             {
                 var productSellingPlan = productSellingPlans.FirstOrDefault(p => p.ProductId == item.ProductId);
@@ -93,11 +92,10 @@ namespace SellingReport.BusinessLogic.Handler
                     };
                     sellingReportTable.Add(sellingReport);
 
-                    productSellingPlanTotalValue += itemMonthlyPlan;
                 }
             }
 
-            
+            var productSellingPlanTotalValue = productSellingPlans.Aggregate<ProductSellingPlan, decimal>(0, (current, item) => current + item.PlannedValue);
             var productSellingTotalPercentage = Math.Round(productSellingOverAllReportsToDate * 100 / productSellingPlanTotalValue, 2);
             var sellingReportFooter = new SellingReportTable
             {

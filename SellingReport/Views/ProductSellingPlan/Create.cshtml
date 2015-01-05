@@ -32,14 +32,13 @@
             @Html.LabelFor(model => model.ProductSellingPlan.Month)
         </div>
         <div class="editor-field">
-            @{var textInfo = new CultureInfo("en-US", false).TextInfo;}
-            @Html.DropDownListFor(x => x.ProductSellingPlan.Month, Model.Month, textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Now.Month)))
+            @Html.DropDownListFor(x => x.ProductSellingPlan.Month, Model.Month)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.ProductSellingPlan.Year)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(x => x.ProductSellingPlan.Year, Model.Year, DateTime.Now.Year.ToString(CultureInfo.InvariantCulture))
+            @Html.DropDownListFor(x => x.ProductSellingPlan.Year, Model.Year)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.ProductSellingPlan.Pieces)

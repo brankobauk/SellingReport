@@ -43,7 +43,11 @@ namespace SellingReport.Controllers
             var years = _dropDownHelper.GetYearsListForDropDown();
             var productSellingPlan = new ProductSellingPlanViewModel
             {
-                ProductSellingPlan = new ProductSellingPlan(),
+                ProductSellingPlan = new ProductSellingPlan()
+                {
+                    Year = DateTime.Now.Year,
+                    Month = DateTime.Now.Month
+                },
                 Month = months,
                 Year = years,
                 Countries = countries,
