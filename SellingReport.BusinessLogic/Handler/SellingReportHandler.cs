@@ -8,46 +8,49 @@ using SellingReport.Models.Models;
 
 namespace SellingReport.BusinessLogic.Handler
 {
-    
+
     public class SellingReportHandler
     {
         private readonly SellingReportManager _sellingReportManager = new SellingReportManager();
         private readonly HolidayHandler _holidayHandler = new HolidayHandler();
 
-        public List<SellingReportTable> GetSellingReportTable(IEnumerable<ProductSellingReport> productSellingReports, List<ProductSellingPlan> productSellingPlans,Country country, IEnumerable<Holiday> holidays, DateTime date)
+        public List<SellingReportTable> GetSellingReportTable(IEnumerable<ProductSellingReport> productSellingReports, List<ProductSellingPlan> productSellingPlans, List<Country> countries, IEnumerable<Holiday> holidays, DateTime date)
         {
             const string montlyPlan = "Monthly Plan (No of Bottles)";
             const string monthlyPlanToDate = "Plan Till Date (No of Bottles)";
             const string soldPieces = "SoldPieces (No of Bottles)";
             const string soldPrecentage = "SoldPieces / Month (%)";
-            
+
             var startDate = date;
-            
+
             var holidayDates = holidays.Select(item => Convert.ToDateTime(item.Day + "." + item.Month + "." + startDate.Year)).ToList();
-            holidayDates.Add(_holidayHandler.GetEaster(date.Year, country.IsOrdthodox));
+            foreach (var country in countries)
+            {
+                holidayDates.Add(_holidayHandler.GetEaster(date.Year, country.IsOrdthodox));
+            }
 
             var workingDaysTillNow = _holidayHandler.GetWorkingDaysTillNow(startDate, holidayDates);
             var nonWorkingDays = _holidayHandler.GetNonWorkingDays(startDate, holidayDates);
-            
+
 
             var allDaysInCurrentMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
             var workingDays = allDaysInCurrentMonth - nonWorkingDays.Count;
 
-            var workingDaysPercentage = workingDaysTillNow*100/workingDays;
+            //var workingDaysPercentage = workingDaysTillNow*100/workingDays;
 
 
             var sellingReports = productSellingReports as ProductSellingReport[] ?? productSellingReports.ToArray();
-            decimal productSellingOverAllReportsToDate = 0;
-            foreach (var sellingReport in sellingReports.Where(sellingReport => sellingReport.Date <= startDate))
-            {
-                productSellingOverAllReportsToDate = + sellingReport.SoldValue;
-            }
+            //decimal productSellingOverAllReportsToDate = 0;
+            //foreach (var sellingReport in sellingReports.Where(sellingReport => sellingReport.Date <= startDate))
+            //{
+            //    productSellingOverAllReportsToDate = + sellingReport.SoldValue;
+            //}
 
             var productSellingReportsToDate =
                 sellingReports.Where(
                     p => p.Date >= new DateTime(startDate.Year, startDate.Month, 1) && p.Date <= startDate).ToList();
 
-            productSellingReports = sellingReports.Where(p => p.Date == date).OrderBy(p=>p.ProductId).ToList();
+            productSellingReports = sellingReports.Where(p => p.Date == date).OrderBy(p => p.ProductId).ToList();
             productSellingPlans = productSellingPlans.Where(p => p.Month == date.Month && p.Year == date.Year).ToList();
 
 
@@ -63,13 +66,14 @@ namespace SellingReport.BusinessLogic.Handler
             };
             sellingReportTable.Add(sellingReportHeader);
 
+            var sellingReportTempTable = new List<SellingReportTable>();
             foreach (var item in productSellingReports)
             {
-                var productSellingPlan = productSellingPlans.FirstOrDefault(p => p.ProductId == item.ProductId);
+                var productSellingPlan = productSellingPlans.FirstOrDefault(p => p.ProductId == item.ProductId && p.CountryId == item.CountryId);
                 var productSellingReportToDate =
-                    productSellingReportsToDate.Where(p => p.ProductId == item.ProductId).ToList();
+                    productSellingReportsToDate.Where(p => p.ProductId == item.ProductId && p.CountryId == item.CountryId).ToList();
                 var productSoldPiecesToDate = 0;
-                
+
                 foreach (var itemReport in productSellingReportToDate)
                 {
                     productSoldPiecesToDate += itemReport.SoldPieces;
@@ -77,7 +81,7 @@ namespace SellingReport.BusinessLogic.Handler
                 if (productSellingPlan != null)
                 {
                     var itemMonthlyPlan = productSellingPlan.Pieces;
-                    var itemPlanToDate = productSellingPlan.Pieces * workingDaysTillNow/workingDays;
+                    var itemPlanToDate = productSellingPlan.Pieces * workingDaysTillNow / workingDays;
                     var itemSellingPercentage = productSoldPiecesToDate * 100 / itemMonthlyPlan;
                     var onplan = itemPlanToDate < productSoldPiecesToDate;
                     var sellingReport = new SellingReportTable
@@ -90,26 +94,38 @@ namespace SellingReport.BusinessLogic.Handler
                         Image = item.Product.Image,
                         OnPlan = onplan
                     };
-                    sellingReportTable.Add(sellingReport);
+                    sellingReportTempTable.Add(sellingReport);
 
                 }
             }
+            sellingReportTempTable = sellingReportTempTable.GroupBy(p => p.Name)
+                .Select(pl => new SellingReportTable
+                {
+                    Name = pl.First().Name,
+                    MonthlyPlan = pl.Sum(c => Convert.ToInt32(c.MonthlyPlan)).ToString(CultureInfo.InvariantCulture),
+                    MonthlyPlanToDate = pl.Sum(c => Convert.ToInt32(c.MonthlyPlanToDate)).ToString(CultureInfo.InvariantCulture),
+                    SoldPieces = pl.Sum(c => Convert.ToInt32(c.SoldPieces)).ToString(CultureInfo.InvariantCulture),
+                    SoldPercentage = (pl.Sum(c => Convert.ToInt32(c.MonthlyPlanToDate)) * 100 / pl.Sum(c => Convert.ToInt32(c.MonthlyPlan))).ToString(CultureInfo.InvariantCulture),
+                    Image = pl.First().Image,
+                    OnPlan = pl.Sum(c => Convert.ToInt32(c.MonthlyPlanToDate)) < pl.Sum(c => Convert.ToInt32(c.SoldPieces))
+                }).ToList();
+            sellingReportTable.AddRange(sellingReportTempTable);
 
-            var productSellingPlanTotalValue = productSellingPlans.Aggregate<ProductSellingPlan, decimal>(0, (current, item) => current + item.PlannedValue);
-            var productSellingTotalPercentage = Math.Round(productSellingOverAllReportsToDate * 100 / productSellingPlanTotalValue, 2);
-            var sellingReportFooter = new SellingReportTable
-            {
-                Name = "Sum",
-                MonthlyPlan = productSellingPlanTotalValue.ToString(CultureInfo.InvariantCulture),
-                MonthlyPlanToDate = workingDaysPercentage.ToString(CultureInfo.InvariantCulture),
-                SoldPieces = productSellingOverAllReportsToDate.ToString(CultureInfo.InvariantCulture),
-                SoldPercentage = productSellingTotalPercentage.ToString(CultureInfo.InvariantCulture)
-            };
-            sellingReportTable.Add(sellingReportFooter);
+            //var productSellingPlanTotalValue = productSellingPlans.Aggregate<ProductSellingPlan, decimal>(0, (current, item) => current + item.PlannedValue);
+            //var productSellingTotalPercentage = Math.Round(productSellingOverAllReportsToDate * 100 / productSellingPlanTotalValue, 2);
+            //var sellingReportFooter = new SellingReportTable
+            //{
+            //    Name = "Sum",
+            //    MonthlyPlan = productSellingPlanTotalValue.ToString(CultureInfo.InvariantCulture),
+            //    MonthlyPlanToDate = workingDaysPercentage.ToString(CultureInfo.InvariantCulture),
+            //    SoldPieces = productSellingOverAllReportsToDate.ToString(CultureInfo.InvariantCulture),
+            //    SoldPercentage = productSellingTotalPercentage.ToString(CultureInfo.InvariantCulture)
+            //};
+            //sellingReportTable.Add(sellingReportFooter);
 
             return sellingReportTable;
         }
 
-        
+
     }
 }

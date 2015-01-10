@@ -37,7 +37,7 @@ namespace SellingReport.Controllers
             return View();
         }
 
-        public ActionResult Report()
+        public ActionResult CountryReport()
         {
             try
             {
@@ -46,7 +46,7 @@ namespace SellingReport.Controllers
                 {
                     countryId = 1;
                 }
-                var countries = _db.Countries.Where(p => p.CountryId == countryId).ToList().FirstOrDefault();
+                var countries = _db.Countries.Where(p => p.CountryId == countryId).ToList();
 
                 var productSellingReport =
                     _db.ProductSellingReports.Where(
@@ -57,7 +57,11 @@ namespace SellingReport.Controllers
                         .Include(p => p.Country)
                         .OrderBy(p => p.Product.Name)
                         .ToList();
-                var date = Request.QueryString["date"] ?? _dateHandler.GetLastActivityDate(productSellingReport);
+                var date = Request.QueryString["date"];
+                if (date == "")
+                {
+                    date = _dateHandler.GetLastActivityDate(productSellingReport);
+                }
                 var reportDate = Convert.ToDateTime(date);
                 var productSellingPlan =
                     _db.ProductSellingPlans.Where(
@@ -82,6 +86,41 @@ namespace SellingReport.Controllers
             {
                 return View("_Report", null);
             }
+        }
+
+        public ActionResult Report()
+        {
+            var countries = _db.Countries.ToList();
+            var productSellingReport =
+                    _db.ProductSellingReports.Where(
+                        p =>
+                            p.ProductId == p.Product.ProductId)
+                        .Include(p => p.Product)
+                        .OrderBy(p => p.Product.Name)
+                        .ToList();
+            var date = Request.QueryString["date"];
+            if (date == null)
+            {
+                date = _dateHandler.GetLastActivityDate(productSellingReport);
             }
+            var reportDate = Convert.ToDateTime(date);
+            var productSellingPlan =
+                _db.ProductSellingPlans.Where(
+                    p =>
+                        p.ProductId == p.Product.ProductId)
+                    .Include(p => p.Product)
+                    .Include(p => p.Country)
+                    .OrderBy(p => p.Product.Name)
+                    .ToList();
+            var holiday = _db.Holidays.ToList();
+            var sellingReportTable = _sellingReportHandler.GetSellingReportTable(productSellingReport,
+                productSellingPlan, countries, holiday, reportDate);
+            var sellingReportTableViewModel = new SellingReportTableViewModel
+            {
+                Date = date,
+                SellingReportTable = sellingReportTable
+            };
+            return View("_Report", sellingReportTableViewModel);
+        }
     }
 }
