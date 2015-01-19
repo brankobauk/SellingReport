@@ -33,6 +33,7 @@
                             var cssClassPlan = "";
                             var cssClass = "";
                             var cssClassSum = "header";
+                            var cssWidth = "";
                             if (i > 0)//&& i != Model.SellingReportTable.Count - 1)
                             {
                                 cssClassPlan = "green";
@@ -56,10 +57,11 @@
                             {
                                 cssClassPlan = "left";
                                 cssClass = "left";
+                                cssWidth = 'style=250px';
                             }
                             var cssClassPlanPercentage = cssClassPlan + " percentage";
                             <tr>
-                                <td class="@cssClassSum" width="200px">@line.Name</td>
+                                <td class="@cssClassSum" @cssWidth>@line.Name</td>
                                 <td class="@cssClass">@line.MonthlyPlan</td>
                                 <td class="@cssClass">@line.MonthlyPlanToDate</td>
                                 <td class="@cssClassPlan">@line.SoldPieces</td>
