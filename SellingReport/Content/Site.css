@@ -1112,7 +1112,7 @@ div.hidden {
 }
 #cumulative-table {
     position: absolute;
-    top: 140px;
+    bottom: 20px;
     left: 0px;
 }
 #cumulative-table table{
