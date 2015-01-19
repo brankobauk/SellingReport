@@ -1,0 +1,65 @@
+﻿@model SellingReport.Models.ViewModels.ProductSellingYearlyPlanViewModel
+
+@{
+    ViewBag.Title = "Edit Plan";
+}
+@{
+    Html.EnableClientValidation(false);
+}
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ProductSellingPlan</legend>
+
+        @Html.HiddenFor(model => model.ProductSellingYearlyPlan.ProductSellingYearlyPlanId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyPlan.ProductId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyPlan.ProductId, Model.Products)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyPlan.CountryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyPlan.CountryId, Model.Countries)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyPlan.Month)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyPlan.Month, Model.Month)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyPlan.Year)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyPlan.Year, Model.Year)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyPlan.PlannedValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingYearlyPlan.PlannedValue)
+            @Html.ValidationMessageFor(model => model.ProductSellingYearlyPlan.PlannedValue)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

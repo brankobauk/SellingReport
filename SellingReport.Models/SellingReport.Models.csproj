@@ -52,24 +52,74 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AccountModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Country.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Holiday.cs" />
-    <Compile Include="Models\HolidayDates.cs" />
+    <Compile Include="Models\Holiday.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\HolidayDates.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Product.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\ProductSellingPlan.cs" />
-    <Compile Include="Models\ProductSellingReport.cs" />
-    <Compile Include="Models\SellingReportTable.cs" />
-    <Compile Include="Models\VariableHoliday.cs" />
+    <Compile Include="Models\ProductSellingMonthlyPlan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ProductSellingMonthlyReport.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ProductSellingPlan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ProductSellingReport.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ProductSellingYearlyPlan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\ProductSellingYearlyReport.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SellingReportMonthlyTable.cs" />
+    <Compile Include="Models\SellingReportTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\SellingReportYearlyPlan.cs" />
+    <Compile Include="Models\SellingReportYearlyReport.cs" />
+    <Compile Include="Models\SellingReportYearlyTable.cs" />
+    <Compile Include="Models\VariableHoliday.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\HolidayViewModel.cs" />
-    <Compile Include="ViewModels\ProductSellingPlanViewModel.cs" />
-    <Compile Include="ViewModels\ProductSellingReportViewModel.cs" />
-    <Compile Include="ViewModels\SellingReportTableViewModel.cs" />
+    <Compile Include="ViewModels\HolidayViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProductSellingMonthlyPlanViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProductSellingMonthlyReportViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProductSellingPlanViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProductSellingReportViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProductSellingYearlyPlanViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\ProductSellingYearlyReportViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\SellingReportTableViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewModels\VariableHolidayViewModel.cs">
       <SubType>Code</SubType>
     </Compile>

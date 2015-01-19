@@ -10,6 +10,8 @@ namespace SellingReport.Models.ViewModels
     public class SellingReportTableViewModel
     {
         public string Date { get; set; }
-        public List<SellingReportTable> SellingReportTable { get; set; } 
+        public List<SellingReportTable> SellingReportTable { get; set; }
+        public SellingReportMonthlyTable SellingReportMonthlyTable { get; set; }
+        public List<SellingReportYearlyTable> SellingReportYearlyTable { get; set; }
     }
 }

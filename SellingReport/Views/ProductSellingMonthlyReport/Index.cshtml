@@ -1,0 +1,53 @@
+﻿@using PagedList.Mvc
+@model PagedList.PagedList<SellingReport.Models.Models.ProductSellingMonthlyReport>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Country
+        </th>
+        <th>
+            Sold Value
+        </th>
+        
+        <th></th>
+    </tr>
+    @if (Model != null) {
+    foreach (var item in Model)
+     {
+         <tr>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Date)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.Country.Name)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.SoldValue)
+             </td>
+             <td>
+                 @Html.ActionLink("Edit", "Edit", new {id = item.ProductSellingMonthlyReportId}) |
+                 @Html.ActionLink("Delete", "Delete", new { id = item.ProductSellingMonthlyReportId })
+             </td>
+         </tr>
+     }
+    <tr>
+        <td colspan="6">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new {page, pageSize = Model.PageSize}))
+            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
+        </td>
+    </tr>
+    }
+</table>

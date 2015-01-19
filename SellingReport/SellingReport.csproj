@@ -191,13 +191,39 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\SellingReportContext.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CountryController.cs" />
-    <Compile Include="Controllers\HolidayController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProductSellingPlanController.cs" />
-    <Compile Include="Controllers\ProductSellingReportController.cs" />
+    <Compile Include="Controllers\AccountController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\CountryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\HolidayController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductSellingMonthlyPlanController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductSellingMonthlyReportController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductSellingPlanController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductSellingReportController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductSellingYearlyPlanController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\ProductSellingYearlyReportController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\VariableHolidayController.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -210,6 +236,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\Images\arrow-orange.png" />
+    <Content Include="Content\themes\Images\arrow-orangine-middle.png" />
+    <Content Include="Content\themes\Images\arrow-orangine.png" />
+    <Content Include="Content\themes\Images\arrow-violet.png" />
+    <Content Include="Content\themes\Images\chart-orange.png" />
+    <Content Include="Content\themes\Images\chart-orangine.png" />
+    <Content Include="Content\themes\Images\chart-violet.png" />
     <Content Include="Content\themes\Images\header-background.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -285,6 +318,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ProductSellingMonthlyReport\general.js" />
     <Content Include="Scripts\ProductSellingReport\general.js" />
     <Content Include="Scripts\VariableHoliday\general.js" />
     <Content Include="Views\Holiday\Edit.cshtml">
@@ -296,6 +330,20 @@
     <Content Include="Views\Home\_Report.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\ProductSellingMonthlyPlan\Create.cshtml" />
+    <Content Include="Views\ProductSellingMonthlyPlan\Edit.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ProductSellingMonthlyPlan\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ProductSellingMonthlyReport\Create.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ProductSellingMonthlyReport\Edit.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ProductSellingMonthlyReport\Index.cshtml" />
     <Content Include="Views\ProductSellingReport\Create.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -358,6 +406,12 @@
     <Content Include="Views\ProductSellingReport\Index.cshtml" />
     <Content Include="Views\Holiday\Index.cshtml" />
     <Content Include="Views\ProductSellingReport\Edit.cshtml" />
+    <Content Include="Views\ProductSellingYearlyPlan\Create.cshtml" />
+    <Content Include="Views\ProductSellingYearlyPlan\Edit.cshtml" />
+    <Content Include="Views\ProductSellingYearlyPlan\Index.cshtml" />
+    <Content Include="Views\ProductSellingYearlyReport\Create.cshtml" />
+    <Content Include="Views\ProductSellingYearlyReport\Edit.cshtml" />
+    <Content Include="Views\ProductSellingYearlyReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\ProductImages\" />

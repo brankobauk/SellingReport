@@ -10,7 +10,7 @@ body {
     background-color: #fff;
     border-top: solid 10px #000;
     color: #333;
-    font-size: .85em;
+    font-size: .75em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
@@ -182,7 +182,7 @@ footer {
 /* menu
 ----------------------------------------------------------*/
 ul#menu {
-    font-size: 1.3em;
+    font-size: 1.0em;
     font-weight: 600;
     margin: 0 0 5px;
     padding: 0;
@@ -192,7 +192,7 @@ ul#menu {
     ul#menu li {
         display: inline;
         list-style: none;
-        padding-left: 15px;
+        padding-left: 9px;
     }
 
         ul#menu li a {
@@ -807,6 +807,7 @@ body.no-background {
     width: 98%;
     margin: 20px auto 0;
     background: none;
+    position: relative;
 }
 #main table {
     margin: 0;
@@ -1027,4 +1028,94 @@ body.no-background {
 
 div.hidden {
     display: none;
+}
+#yearly-reports .item {
+    width: 150px;
+    height: 210px;
+    float: left;
+    margin: 0 30px;
+}
+#yearly-reports .name {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+#yearly-reports .chart {
+    width: 150px;
+    height: 170px;
+    float: left;
+}
+#yearly-reports .chart {
+    width: 150px;
+    height: 170px;
+    float: left;
+}
+#yearly-reports .line {
+    width: 150px;
+    float: left;
+}
+#yearly-reports .line .month{
+    width: 38px;
+    float: left;
+    font-size: 0.5em;
+    text-align: right
+}
+#yearly-reports .line .planned-pieces{
+    width: 30px;
+    float: left;
+    font-size: 0.5em;
+}
+#yearly-reports .line .chart-line{
+    width: 26px;
+    float: left;
+    background: url(/Content/themes/Images/chart-orange.png);
+    background-position: top center;
+    background-repeat: repeat-y;
+}
+#yearly-reports .line .chart-line-planned{
+    background: url(/Content/themes/Images/chart-orangine.png);
+    background-position: top center;
+    background-repeat: repeat-y;
+}
+#yearly-reports .line .chart-line.arrow{
+    background: url(/Content/themes/Images/arrow-orange.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+#yearly-reports .line .chart-line-planned.arrow{
+    background: url(/Content/themes/Images/arrow-orangine.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+#yearly-reports .line .chart-line-planned.arrow-middle{
+    background: url(/Content/themes/Images/arrow-orangine-middle.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+#yearly-reports .line .achieved-line{
+    width: 26px;
+    float: left;
+    background: url(/Content/themes/Images/chart-violet.png);
+    background-position: top center;
+    background-repeat: repeat-y;
+}
+
+#yearly-reports .line .achieved-line.arrow{
+    background: url(/Content/themes/Images/arrow-violet.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+#yearly-reports .line .sold-pieces{
+    width: 30px;
+    float: left;
+    font-size: 0.5em;
+}
+#cumulative-table {
+    position: absolute;
+    top: 140px;
+    left: 0px;
+}
+#cumulative-table table{
+    background-color: #a6dbed;
+    border: 1px solid #000000;
 }

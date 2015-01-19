@@ -47,6 +47,9 @@ namespace SellingReport
             bundles.Add(new StyleBundle("~/bundles/productsellingreport").Include(
                     "~/Scripts/ProductSellingReport/general.js"
                 ));
+            bundles.Add(new StyleBundle("~/bundles/productsellingmonthlyreport").Include(
+                    "~/Scripts/ProductSellingMonthlyReport/general.js"
+                ));
             bundles.Add(new StyleBundle("~/bundles/variableholiday").Include(
                     "~/Scripts/VariableHoliday/general.js"
                 ));

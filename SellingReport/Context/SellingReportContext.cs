@@ -15,6 +15,10 @@ namespace SellingReport.Context
         public DbSet<Holiday> Holidays { get; set; }
         public DbSet<ProductSellingPlan> ProductSellingPlans { get; set; }
         public DbSet<ProductSellingReport> ProductSellingReports { get; set; }
+        public DbSet<ProductSellingMonthlyPlan> ProductSellingMonthlyPlans { get; set; }
+        public DbSet<ProductSellingMonthlyReport> ProductSellingMonthlyReports { get; set; }
+        public DbSet<ProductSellingYearlyPlan> ProductSellingYearlyPlans { get; set; }
+        public DbSet<ProductSellingYearlyReport> ProductSellingYearlyReports { get; set; }
         public DbSet<VariableHoliday> VariableHolidays { get; set; }
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,0 +1,80 @@
+﻿@using System.Globalization
+@model SellingReport.Models.ViewModels.ProductSellingYearlyReportViewModel
+
+@{
+    ViewBag.Title = "Create Plan";
+}
+@{
+    Html.EnableClientValidation(false);
+}
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ProductSellingPlan</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.ProductId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyReport.ProductId, Model.Products)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.CountryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyReport.CountryId, Model.Countries)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.Month)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyReport.Month, Model.Month)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.Year)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingYearlyReport.Year, Model.Year)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.PlannedValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingYearlyReport.PlannedValue)
+            @Html.ValidationMessageFor(model => model.ProductSellingYearlyReport.PlannedValue)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.PlannedPieces)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingYearlyReport.PlannedPieces)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.SoldValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingYearlyReport.SoldValue)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingYearlyReport.SoldPieces)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingYearlyReport.SoldPieces)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -127,5 +127,71 @@ namespace SellingReport.BusinessLogic.Handler
         }
 
 
+        public SellingReportMonthlyTable GetSellingReportMonthlyTable(ProductSellingMonthlyReport productSellingMonthlyReport, ProductSellingMonthlyPlan productSellingMonthlyPlan, List<Country> countries, IEnumerable<Holiday> holidays, DateTime date)
+        {
+            var startDate = date;
+            var holidayDates = holidays.Select(item => Convert.ToDateTime(item.Day + "." + item.Month + "." + startDate.Year)).ToList();
+            foreach (var country in countries)
+            {
+                holidayDates.Add(_holidayHandler.GetEaster(date.Year, country.IsOrdthodox));
+            }
+
+            var workingDaysTillNow = _holidayHandler.GetWorkingDaysTillNow(startDate, holidayDates);
+            var nonWorkingDays = _holidayHandler.GetNonWorkingDays(startDate, holidayDates);
+
+
+            var allDaysInCurrentMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
+            var workingDays = allDaysInCurrentMonth - nonWorkingDays.Count;
+
+
+            return new SellingReportMonthlyTable
+            {
+                MonthlyPlan = productSellingMonthlyPlan.PlannedValue.ToString(CultureInfo.InvariantCulture),
+                MonthlyPlanToDate =
+                    (productSellingMonthlyPlan.PlannedValue*workingDaysTillNow/workingDays).ToString(
+                        CultureInfo.InvariantCulture),
+                SoldValue = productSellingMonthlyReport.SoldValue.ToString(CultureInfo.InvariantCulture)
+            };
+        }
+
+        public List<SellingReportYearlyTable> GetSellingReportYearlyTable(IEnumerable<ProductSellingYearlyReport> productSellingYearlyReport)
+        {
+            var sellingReportYearlyTable = new List<SellingReportYearlyTable>();
+            var productSellingYearlyReports = productSellingYearlyReport as ProductSellingYearlyReport[] ?? productSellingYearlyReport.ToArray();
+            var products = productSellingYearlyReports.Select(item => new Product
+            {
+                ProductId = item.ProductId, Name = item.Product.Name
+            }).ToList();
+
+            products = products.GroupBy(p => p.ProductId)
+                .Select(pl => new Product
+                {
+                    ProductId = pl.First().ProductId,
+                    Name = pl.First().Name
+                }).ToList();
+
+            foreach (var item in products)
+            {
+                var product = item;
+                var sellingReportYearlyReportTable = new List<ProductSellingYearlyReport>();
+                for (var i = 1; i <= 12; i++)
+                {
+                    var count = i;
+                    var productSellingMonthlyReport =
+                        productSellingYearlyReports.FirstOrDefault(p => p.ProductId == product.ProductId && p.Month == count);
+
+                    if (productSellingMonthlyReport != null) sellingReportYearlyReportTable.Add(productSellingMonthlyReport);
+                }
+                var sellingReportYearlyTempTable = new SellingReportYearlyTable
+                {
+                    Name = product.Name,
+                    ProductSellingYearlyReport = sellingReportYearlyReportTable
+                };
+
+                sellingReportYearlyTable.Add(sellingReportYearlyTempTable);
+            }
+
+            return sellingReportYearlyTable;
+        }
     }
 }

@@ -1,0 +1,59 @@
+﻿@model SellingReport.Models.ViewModels.ProductSellingMonthlyPlanViewModel
+
+@{
+    ViewBag.Title = "Edit Plan";
+}
+@{
+    Html.EnableClientValidation(false);
+}
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ProductSellingPlan</legend>
+
+        @Html.HiddenFor(model => model.ProductSellingMonthlyPlan.ProductSellingMonthlyPlanId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingMonthlyPlan.CountryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingMonthlyPlan.CountryId, Model.Countries)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingMonthlyPlan.Month)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingMonthlyPlan.Month, Model.Month)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingMonthlyPlan.Year)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ProductSellingMonthlyPlan.Year, Model.Year)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductSellingMonthlyPlan.PlannedValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductSellingMonthlyPlan.PlannedValue)
+            @Html.ValidationMessageFor(model => model.ProductSellingMonthlyPlan.PlannedValue)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

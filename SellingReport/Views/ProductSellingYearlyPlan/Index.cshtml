@@ -1,0 +1,70 @@
+﻿@using System.Globalization
+@using PagedList.Mvc
+@model PagedList.PagedList<SellingReport.Models.Models.ProductSellingYearlyPlan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Month
+        </th>
+        <th>
+            Year
+        </th>
+        <th>
+            Country
+        </th>
+        <th>
+            Product
+        </th>
+        <th>
+            PlannedValue
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+            var textInfo = new CultureInfo("en-US", false).TextInfo;
+            @textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Month))
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlannedValue)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductSellingYearlyPlanId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductSellingYearlyPlanId })
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="6">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
+            </td>
+        </tr>
+    }
+</table>

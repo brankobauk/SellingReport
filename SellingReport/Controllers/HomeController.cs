@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SellingReport.BusinessLogic.Handler;
 using SellingReport.Context;
+using SellingReport.Models.Models;
 using SellingReport.Models.ViewModels;
 
 namespace SellingReport.Controllers
@@ -57,6 +58,7 @@ namespace SellingReport.Controllers
                         .Include(p => p.Country)
                         .OrderBy(p => p.Product.Name)
                         .ToList();
+
                 var date = Request.QueryString["date"];
                 if (date == "")
                 {
@@ -75,10 +77,23 @@ namespace SellingReport.Controllers
                 var holiday = _db.Holidays.Where(p => p.CountryId == countryId).ToList();
                 var sellingReportTable = _sellingReportHandler.GetSellingReportTable(productSellingReport,
                     productSellingPlan, countries, holiday, reportDate);
+
+                var productSellingMonthlyReport = _db.ProductSellingMonthlyReports.FirstOrDefault(p => p.Date == reportDate);
+               SellingReportMonthlyTable sellingReportMonthlyTable = null;
+                if (productSellingMonthlyReport != null) {
+                    var productSellingMonthlyPlan = _db.ProductSellingMonthlyPlans.FirstOrDefault(p => p.Month == reportDate.Month && p.Year == reportDate.Year);
+                    sellingReportMonthlyTable = _sellingReportHandler.GetSellingReportMonthlyTable(productSellingMonthlyReport, productSellingMonthlyPlan, countries, holiday, reportDate);
+                }
+                var productSellingYearlyReport =
+                    _db.ProductSellingYearlyReports.Where(p => p.Year == reportDate.Year)
+                        .ToList();
+                var sellingReportYearlyTable = _sellingReportHandler.GetSellingReportYearlyTable(productSellingYearlyReport);
                 var sellingReportTableViewModel = new SellingReportTableViewModel
                 {
                     Date = date,
-                    SellingReportTable = sellingReportTable
+                    SellingReportTable = sellingReportTable,
+                    SellingReportMonthlyTable = sellingReportMonthlyTable,
+                    SellingReportYearlyTable = sellingReportYearlyTable
                 };
                 return View("_Report", sellingReportTableViewModel);
             }
