@@ -1030,10 +1030,11 @@ div.hidden {
     display: none;
 }
 #yearly-reports .item {
-    width: 150px;
+    width: 172px;
     height: 210px;
     float: left;
     margin: 0 30px;
+    position: relative;
 }
 #yearly-reports .name {
     width: 100%;
@@ -1041,21 +1042,21 @@ div.hidden {
     padding-bottom: 10px;
 }
 #yearly-reports .chart {
-    width: 150px;
+    width: 172px;
     height: 170px;
     float: left;
 }
 #yearly-reports .chart {
-    width: 150px;
+    width: 172px;
     height: 170px;
     float: left;
 }
 #yearly-reports .line {
-    width: 150px;
+    width: 172px;
     float: left;
 }
 #yearly-reports .line .month{
-    width: 38px;
+    width: 60px;
     float: left;
     font-size: 0.5em;
     text-align: right
@@ -1119,3 +1120,6 @@ div.hidden {
     background-color: #a6dbed;
     border: 1px solid #000000;
 }
+.yearly-planned-ammount{ border-bottom: 1px solid #ffbe92;font-size: 0.8em;font-weight: bold;color:#ffbe92;width: 122px;text-align: left;padding: 3px 5px;position: absolute;left: -29px;}
+.monthly-planned-ammount{border-bottom: 1px solid #ff6600;font-size: 0.8em;font-weight: bold;color:#ff6600;width: 122px;text-align: left;padding: 3px 5px;position: absolute;left: -29px;}
+.monthly-achieved-ammount{border-bottom: 1px solid #b000ff;font-size: 0.8em;font-weight: bold;color:#b000ff;width: 80px;text-align: right;padding: 3px 5px;position: absolute;left: 130px;}

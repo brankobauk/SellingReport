@@ -182,10 +182,18 @@ namespace SellingReport.BusinessLogic.Handler
 
                     if (productSellingMonthlyReport != null) sellingReportYearlyReportTable.Add(productSellingMonthlyReport);
                 }
+                var yearlyAmmount = Convert.ToInt32(sellingReportYearlyReportTable.Sum(p => p.PlannedValue));
+                var monthInserted = sellingReportYearlyReportTable.Count(p => p.SoldValue > 0);
+                var plannedAmmount = Convert.ToInt32(sellingReportYearlyReportTable.Where(p => p.Month <= monthInserted).Sum(p => p.PlannedValue));
+                var achievedAmmount = Convert.ToInt32(sellingReportYearlyReportTable.Where(p => p.Month <= monthInserted).Sum(p => p.SoldValue));
+                
                 var sellingReportYearlyTempTable = new SellingReportYearlyTable
                 {
                     Name = product.Name,
-                    ProductSellingYearlyReport = sellingReportYearlyReportTable
+                    ProductSellingYearlyReport = sellingReportYearlyReportTable,
+                    YearlyAmmount = yearlyAmmount.ToString(CultureInfo.InvariantCulture),
+                    PlannedAmmount = plannedAmmount.ToString(CultureInfo.InvariantCulture),
+                    AchievedAmmount = achievedAmmount.ToString(CultureInfo.InvariantCulture)
                 };
 
                 sellingReportYearlyTable.Add(sellingReportYearlyTempTable);
