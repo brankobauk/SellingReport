@@ -1031,7 +1031,7 @@ div.hidden {
 }
 #yearly-reports .item {
     width: 172px;
-    height: 210px;
+    height: 230px;
     float: left;
     margin: 0 30px;
     position: relative;
@@ -1043,12 +1043,10 @@ div.hidden {
 }
 #yearly-reports .chart {
     width: 172px;
-    height: 170px;
     float: left;
 }
-#yearly-reports .chart {
+#yearly-reports .chart .margin{
     width: 172px;
-    height: 170px;
     float: left;
 }
 #yearly-reports .line {
@@ -1069,42 +1067,10 @@ div.hidden {
 #yearly-reports .line .chart-line{
     width: 26px;
     float: left;
-    background: url(/Content/themes/Images/chart-orange.png);
-    background-position: top center;
-    background-repeat: repeat-y;
-}
-#yearly-reports .line .chart-line-planned{
-    background: url(/Content/themes/Images/chart-orangine.png);
-    background-position: top center;
-    background-repeat: repeat-y;
-}
-#yearly-reports .line .chart-line.arrow{
-    background: url(/Content/themes/Images/arrow-orange.png);
-    background-position: top center;
-    background-repeat: no-repeat;
-}
-#yearly-reports .line .chart-line-planned.arrow{
-    background: url(/Content/themes/Images/arrow-orangine.png);
-    background-position: top center;
-    background-repeat: no-repeat;
-}
-#yearly-reports .line .chart-line-planned.arrow-middle{
-    background: url(/Content/themes/Images/arrow-orangine-middle.png);
-    background-position: top center;
-    background-repeat: no-repeat;
 }
 #yearly-reports .line .achieved-line{
     width: 26px;
     float: left;
-    background: url(/Content/themes/Images/chart-violet.png);
-    background-position: top center;
-    background-repeat: repeat-y;
-}
-
-#yearly-reports .line .achieved-line.arrow{
-    background: url(/Content/themes/Images/arrow-violet.png);
-    background-position: top center;
-    background-repeat: no-repeat;
 }
 #yearly-reports .line .sold-pieces{
     width: 30px;
@@ -1120,6 +1086,20 @@ div.hidden {
     background-color: #a6dbed;
     border: 1px solid #000000;
 }
-.yearly-planned-ammount{ border-bottom: 1px solid #ffbe92;font-size: 0.8em;font-weight: bold;color:#ffbe92;width: 122px;text-align: left;padding: 3px 5px;position: absolute;left: -29px;}
-.monthly-planned-ammount{border-bottom: 1px solid #ff6600;font-size: 0.8em;font-weight: bold;color:#ff6600;width: 122px;text-align: left;padding: 3px 5px;position: absolute;left: -29px;}
-.monthly-achieved-ammount{border-bottom: 1px solid #b000ff;font-size: 0.8em;font-weight: bold;color:#b000ff;width: 80px;text-align: right;padding: 3px 5px;position: absolute;left: 130px;}
+
+.yearly-planned-ammount{width: 140px;text-align: left;position: absolute;left: -28px;background: url(/Content/themes/Images/arrow-orange.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    height: 100%;}
+.yearly-planned-ammount-value{width: 140px;text-align: left;position: absolute;left: -28px;font-size: 0.8em;font-weight: bold;color:#ffbe92;padding: 3px;}
+.monthly-planned-ammount{width: 140px;text-align: left;position: absolute;left: -28px;background: url(/Content/themes/Images/arrow-orangine.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    height: 100%;}
+.monthly-planned-ammount-value{width: 140px;text-align: left;position: absolute;left: -28px;font-size: 0.8em;font-weight: bold;color:#ff6600;padding: 3px;}
+.monthly-achieved-ammount{width: 120px;
+                          position: absolute;left: 120px;background: url(/Content/themes/Images/arrow-violet.png);
+    background-position: top left;
+    background-repeat: no-repeat;
+    height: 100%;}
+.monthly-achieved-ammount-value{width: 114px;position: absolute;left: 120px;font-size: 0.8em;font-weight: bold;color:#b000ff;text-align: right;padding: 3px;}

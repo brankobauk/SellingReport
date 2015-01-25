@@ -30,19 +30,76 @@
         }
     });
 
-    $("#yearly-reports .item").each(function() {
+    $("#yearly-reports .item").each(function () {
+
         var container = $(this);
-        var y = container.find(".chart-line.arrow").position().top;
+
+        var yearlyPlanValueDiv = container.find(".yearly-planned-ammount-value");
+        var monthlyPlanValueDiv = container.find(".monthly-planned-ammount-value");
+        var monthlySoldValueDiv = container.find(".monthly-achieved-ammount-value");
+
+        var yearlyPlanValue = parseInt(yearlyPlanValueDiv.text());
+        var monthlySoldValue = parseInt(monthlySoldValueDiv.text());
+        var topValue = yearlyPlanValue;
+        var onPlan = false;
+        if (yearlyPlanValue < monthlySoldValue) {
+            topValue = monthlySoldValue;
+            onPlan = true;
+        }
+
+        container.find(".line").each(function () {
+            var val = parseInt($(this).find(".planned-pieces").attr("data-val"));
+            var h = 210 / (topValue / (val * 100)) / 100;
+            $(this).height(h);
+        });
+
+        if (onPlan == false) {
+            container.find(".margin").height(0);
+        } else {
+            container.find(".margin").height(210 * (1 - (yearlyPlanValue / monthlySoldValue)));
+        }
+
+        var chartLineContainer = container.find(".chart-line.arrow");
+        var chartLineContainerHeight = chartLineContainer.height();
+        var chartLineContainerYPos = chartLineContainer.position().top;
         var yearlyPlanDiv = container.find(".yearly-planned-ammount");
-        yearlyPlanDiv.css("top", y - 19);
+        
 
-        var ym = container.find(".chart-line.chart-line-planned.arrow-middle").position().top;
+        var monthlyPlanContainer = container.find(".chart-line.chart-line-planned.arrow");
+        var monthlyPlanContainerHeight = chartLineContainer.height();
+        var monthlyPlanContainerYPos = monthlyPlanContainer.position().top;
         var monthlyPlanDiv = container.find(".monthly-planned-ammount");
-        monthlyPlanDiv.css("top", ym - 19);
+        
 
-        var ya = container.find(".chart-line.chart-line-planned.arrow-middle").position().top;
+        var monthlySoldContainer = container.find(".chart-line.chart-line-planned.arrow");
+        var monthlySoldContainerHeight = chartLineContainer.height();
+        var monthlySoldContainerYPos = monthlySoldContainer.position().top - monthlySoldContainerHeight;
         var monthlySoldDiv = container.find(".monthly-achieved-ammount");
-        monthlySoldDiv.css("top", ya - 19);
+        
+
+        
+        if (onPlan) {
+            monthlySoldContainerYPos -= 210 * (1 - (yearlyPlanValue / monthlySoldValue)) - 18;
+            chartLineContainerYPos = container.find(".margin").position().top + container.find(".margin").height();
+            monthlyPlanContainerYPos = container.find(".margin").position().top + container.find(".margin").height();
+        }
+        
+
+        var b = container.find(".clear").position().top;
+
+        yearlyPlanValueDiv.css("top", chartLineContainerYPos - 18);
+        yearlyPlanDiv.css("top", chartLineContainerYPos);
+        yearlyPlanDiv.height(b - chartLineContainerYPos);
+
+
+        monthlyPlanValueDiv.css("top", monthlyPlanContainerYPos - 18);
+        monthlyPlanDiv.css("top", monthlyPlanContainerYPos);
+        monthlyPlanDiv.height(b - monthlyPlanContainerYPos);
+        
+
+        monthlySoldValueDiv.css("top", monthlySoldContainerYPos - 18);
+        monthlySoldDiv.css("top", monthlySoldContainerYPos);
+        monthlySoldDiv.height(b - monthlySoldContainerYPos);
     });
     return false;
 

@@ -84,23 +84,37 @@
                     }
                 </table>
             </div>
+            
             <div id="cumulative-table">
-                <table>
-                    <tr>
-                        <td style="text-align: left;padding:10px 5px 2px">Plan</td>
-                        <td style="text-align: right; padding:10px 5px 2px">@Model.SellingReportMonthlyTable.MonthlyPlan€</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left; padding:0 5px">Monthly Plan To Date</td>
-                        <td style="text-align: right; padding: 0 5px; ">@Model.SellingReportMonthlyTable.MonthlyPlanToDate€</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left; padding: 2px 5px 10px">Achieved</td>
-                        <td style="text-align: right; padding: 2px 5px 10px; ">@Model.SellingReportMonthlyTable.SoldValue€</td>
-                    </tr>
-                </table>
+                @{if (Model.SellingReportMonthlyTable != null)
+                {
+                    <table>
+                        <tr>
+                            <td style="text-align: left;padding:10px 5px 2px">Plan</td>
+                            <td style="text-align: right; padding:10px 5px 2px">@Model.SellingReportMonthlyTable.MonthlyPlan€</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; padding:0 5px">Monthly Plan To Date</td>
+                            <td style="text-align: right; padding: 0 5px; ">@Model.SellingReportMonthlyTable.MonthlyPlanToDate€</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; padding: 2px 5px 10px">Achieved</td>
+                            <td style="text-align: right; padding: 2px 5px 10px; ">@Model.SellingReportMonthlyTable.SoldValue€</td>
+                        </tr>
+                    </table>
+                }
+                else
+                {
+                    <table>
+                        <tr>
+                            <td style="text-align: left;">No Data Inserted In Monthly Report Tool<br/>     For The Date Above.</td>
+                        </tr>
+                    </table>
+                }
+                }
             </div>
-        </div>
+            
+       </div>
         
         <div id="yearly-reports" style="width:100%;">
         @foreach (var item in Model.SellingReportYearlyTable)
@@ -108,19 +122,20 @@
             <div class="item">
                 <div class="name">@item.Name</div>
                 <div class="chart">
+                    <div class="margin">&nbsp;</div>
                     @{
                         var j = 0;
                         var showAchievedArrow = false;
                         foreach (var report in item.ProductSellingYearlyReport.OrderByDescending(p => p.Month))
                         {
-                            
+
                             var soldPieces = "";
                             var achievedLine = "";
                             var plannedLine = "";
                             var chartLineArrow = "";
                             var achievedLineArrow = "";
                             var plannedLineArrow = "";
-                            if (j == 0) {chartLineArrow = "arrow";}
+                            if (j == 0) { chartLineArrow = "arrow"; }
                             if (report.SoldPieces > 0)
                             {
                                 soldPieces = report.SoldPieces.ToString(CultureInfo.InvariantCulture);
@@ -132,29 +147,30 @@
                             {
                                 showAchievedArrow = true;
                                 achievedLineArrow = "arrow";
-                                plannedLineArrow = "arrow-middle";
-                                if (j == 0)
-                                {
-                                    plannedLineArrow = "arrow";    
-                                }
+                                plannedLineArrow = "arrow";
                             }
-                            
+
                             <div class="line">
                                 <div class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.Month))</div>
-                                <div class="planned-pieces">@report.PlannedPieces</div>
-                                <div class="chart-line @plannedLine @chartLineArrow @plannedLineArrow">&nbsp;</div>
+                                <div class="planned-pieces" data-val="@report.PlannedValue">@report.PlannedPieces</div>
+                                <div class="chart-line @chartLineArrow @plannedLine @plannedLineArrow">&nbsp;</div>
                                 <div class="@achievedLine @achievedLineArrow">&nbsp;</div>
-                                <div class="sold-pieces">@soldPieces</div>
+                                <div class="sold-pieces" data-val="@report.SoldValue">@soldPieces</div>
                             </div>
                             j++;
                         }
+                        <div class="yearly-planned-ammount">&nbsp;</div>
+                        <div class="yearly-planned-ammount-value">@item.YearlyAmmount</div>
+                        <div class="monthly-planned-ammount">&nbsp;</div>
+                        <div class="monthly-planned-ammount-value">@item.PlannedAmmount</div>
+                        <div class="monthly-achieved-ammount">&nbsp;</div>
+                        <div class="monthly-achieved-ammount-value">@item.AchievedAmmount</div>
                     }
-                    <div class="yearly-planned-ammount">@item.YearlyAmmount</div>
-                    <div class="monthly-planned-ammount">@item.PlannedAmmount</div>
-                    <div class="monthly-achieved-ammount">@item.AchievedAmmount</div>
                 </div>
+                <div class="clear" style="clear:both;"></div>
             </div>
         }
+
             <div style="clear:both;"></div>
     </div>
         
