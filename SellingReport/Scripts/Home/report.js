@@ -71,9 +71,9 @@
         var monthlyPlanDiv = container.find(".monthly-planned-ammount");
         
 
-        var monthlySoldContainer = container.find(".chart-line.chart-line-planned.arrow");
+        var monthlySoldContainer = container.find(".achieved-line.arrow");
         var monthlySoldContainerHeight = chartLineContainer.height();
-        var monthlySoldContainerYPos = monthlySoldContainer.position().top - monthlySoldContainerHeight;
+        var monthlySoldContainerYPos = monthlySoldContainer.position().top;
         var monthlySoldDiv = container.find(".monthly-achieved-ammount");
         
 
@@ -91,12 +91,12 @@
         yearlyPlanDiv.css("top", chartLineContainerYPos);
         yearlyPlanDiv.height(b - chartLineContainerYPos);
 
-
+        alert(monthlyPlanContainerYPos);
         monthlyPlanValueDiv.css("top", monthlyPlanContainerYPos - 18);
         monthlyPlanDiv.css("top", monthlyPlanContainerYPos);
         monthlyPlanDiv.height(b - monthlyPlanContainerYPos);
-        
 
+        alert(monthlySoldContainerYPos);
         monthlySoldValueDiv.css("top", monthlySoldContainerYPos - 18);
         monthlySoldDiv.css("top", monthlySoldContainerYPos);
         monthlySoldDiv.height(b - monthlySoldContainerYPos);
