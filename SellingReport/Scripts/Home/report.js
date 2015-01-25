@@ -39,6 +39,7 @@
         var monthlySoldValueDiv = container.find(".monthly-achieved-ammount-value");
 
         var yearlyPlanValue = parseInt(yearlyPlanValueDiv.text());
+        var monthlyPlanValue = parseInt(monthlyPlanValueDiv.text());
         var monthlySoldValue = parseInt(monthlySoldValueDiv.text());
         var topValue = yearlyPlanValue;
         var onPlan = false;
@@ -60,28 +61,30 @@
         }
 
         var chartLineContainer = container.find(".chart-line.arrow");
-        var chartLineContainerHeight = chartLineContainer.height();
         var chartLineContainerYPos = chartLineContainer.position().top;
         var yearlyPlanDiv = container.find(".yearly-planned-ammount");
         
 
         var monthlyPlanContainer = container.find(".chart-line.chart-line-planned.arrow");
-        var monthlyPlanContainerHeight = chartLineContainer.height();
+        var monthlyPlanContainerHeight = monthlyPlanContainer.height();
         var monthlyPlanContainerYPos = monthlyPlanContainer.position().top;
         var monthlyPlanDiv = container.find(".monthly-planned-ammount");
         
 
         var monthlySoldContainer = container.find(".achieved-line.arrow");
-        var monthlySoldContainerHeight = chartLineContainer.height();
+        var monthlySoldContainerHeight = monthlySoldContainer.height();
         var monthlySoldContainerYPos = monthlySoldContainer.position().top;
         var monthlySoldDiv = container.find(".monthly-achieved-ammount");
-        
 
         
         if (onPlan) {
-            monthlySoldContainerYPos -= 210 * (1 - (yearlyPlanValue / monthlySoldValue)) - 18;
+            monthlySoldContainerYPos -= 210 * (1 - (yearlyPlanValue / monthlySoldValue)) - 18 + monthlySoldContainerHeight;
             chartLineContainerYPos = container.find(".margin").position().top + container.find(".margin").height();
             monthlyPlanContainerYPos = container.find(".margin").position().top + container.find(".margin").height();
+        }
+        else {
+            //monthlySoldContainerYPos = (210 * (1 - (monthlySoldValue / yearlyPlanValue)) + monthlySoldContainerHeight);
+            //monthlyPlanContainerYPos = (210 * (1 - (monthlyPlanValue / yearlyPlanValue)) + monthlyPlanContainerHeight);
         }
         
 
@@ -91,12 +94,10 @@
         yearlyPlanDiv.css("top", chartLineContainerYPos);
         yearlyPlanDiv.height(b - chartLineContainerYPos);
 
-        alert(monthlyPlanContainerYPos);
         monthlyPlanValueDiv.css("top", monthlyPlanContainerYPos - 18);
         monthlyPlanDiv.css("top", monthlyPlanContainerYPos);
         monthlyPlanDiv.height(b - monthlyPlanContainerYPos);
 
-        alert(monthlySoldContainerYPos);
         monthlySoldValueDiv.css("top", monthlySoldContainerYPos - 18);
         monthlySoldDiv.css("top", monthlySoldContainerYPos);
         monthlySoldDiv.height(b - monthlySoldContainerYPos);
