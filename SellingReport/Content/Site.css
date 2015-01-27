@@ -816,6 +816,7 @@ body.no-background {
     height: 27px;
     color: black;
 }
+#main-table{ min-height: 240px;}
 #main table th, #main table td {
     text-align: center;
     padding: 2px;

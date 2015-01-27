@@ -25,13 +25,12 @@
                             @if (Request.IsAuthenticated)
                             {
                                 <li>@Html.ActionLink("Tables", "Index", "Home")</li>
-                                <li>@Html.ActionLink("Reports", "Index", "ProductSellingReport")</li>
-                                <li>@Html.ActionLink("Plans", "Index", "ProductSellingPlan")</li>
+                                <li>@Html.ActionLink("DailyReports", "Index", "ProductSellingReport")</li>
+                                <li>@Html.ActionLink("MonthlyPlans", "Index", "ProductSellingPlan")</li>
                                 <li>@Html.ActionLink("MonthlyCumulativePlan", "Index", "ProductSellingMonthlyPlan")</li>
                                 <li>@Html.ActionLink("MonthlyCumulativeReport", "Index", "ProductSellingMonthlyReport")</li>
-                                <li>@Html.ActionLink("YearlyPlan", "Index", "ProductSellingYearlyPlan")</li>
                                 <li>@Html.ActionLink("YearlyReport", "Index", "ProductSellingYearlyReport")</li>
-                                <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                                <li>@Html.ActionLink("Brands", "Index", "Product")</li>
                                 <li>@Html.ActionLink("Countries", "Index", "Country")</li>
                                 <li>@Html.ActionLink("Holidays", "Index", "Holiday")</li>
                             }

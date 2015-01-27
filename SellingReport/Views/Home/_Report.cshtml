@@ -17,7 +17,7 @@
                         <tr>
                             <th class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(date.Month))</th>
                             <th class="date">@Model.Date</th>
-                            <th class="menu-button">@Html.ActionLink("Reports", "Index", "ProductSellingReport", new { }, new { @class = "button" })</th>
+                            <th class="menu-button">@Html.ActionLink("Menu", "Index", "ProductSellingReport", new { }, new { @class = "button" })</th>
                         </tr>
                     </thead>
                 </table>
@@ -115,7 +115,8 @@
             </div>
             
        </div>
-        
+        if (Model.SellingReportYearlyTable != null)
+        {
         <div id="yearly-reports" style="width:100%;">
         @foreach (var item in Model.SellingReportYearlyTable)
         {
@@ -173,7 +174,7 @@
 
             <div style="clear:both;"></div>
     </div>
-        
+        }
         @section Scripts {
             @Scripts.Render("~/bundles/home/report")
         }

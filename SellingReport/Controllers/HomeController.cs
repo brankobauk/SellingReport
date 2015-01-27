@@ -85,7 +85,7 @@ namespace SellingReport.Controllers
                     sellingReportMonthlyTable = _sellingReportHandler.GetSellingReportMonthlyTable(productSellingMonthlyReport, productSellingMonthlyPlan, countries, holiday, reportDate);
                 }
                 var productSellingYearlyReport =
-                    _db.ProductSellingYearlyReports.Where(p => p.Year == reportDate.Year)
+                    _db.ProductSellingYearlyReports.Where(p => p.Year == reportDate.Year && p.CountryId==countryId)
                         .ToList();
                 var sellingReportYearlyTable = _sellingReportHandler.GetSellingReportYearlyTable(productSellingYearlyReport);
                 var sellingReportTableViewModel = new SellingReportTableViewModel
