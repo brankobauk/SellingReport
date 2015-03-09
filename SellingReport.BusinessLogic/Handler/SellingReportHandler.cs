@@ -105,7 +105,7 @@ namespace SellingReport.BusinessLogic.Handler
                     MonthlyPlan = pl.Sum(c => Convert.ToInt32(c.MonthlyPlan)).ToString(CultureInfo.InvariantCulture),
                     MonthlyPlanToDate = pl.Sum(c => Convert.ToInt32(c.MonthlyPlanToDate)).ToString(CultureInfo.InvariantCulture),
                     SoldPieces = pl.Sum(c => Convert.ToInt32(c.SoldPieces)).ToString(CultureInfo.InvariantCulture),
-                    SoldPercentage = (pl.Sum(c => Convert.ToInt32(c.MonthlyPlanToDate)) * 100 / pl.Sum(c => Convert.ToInt32(c.MonthlyPlan))).ToString(CultureInfo.InvariantCulture),
+                    SoldPercentage = (pl.Sum(c => Convert.ToInt32(c.SoldPieces)) * 100 / pl.Sum(c => Convert.ToInt32(c.MonthlyPlan))).ToString(CultureInfo.InvariantCulture),
                     Image = pl.First().Image,
                     OnPlan = pl.Sum(c => Convert.ToInt32(c.MonthlyPlanToDate)) < pl.Sum(c => Convert.ToInt32(c.SoldPieces))
                 }).ToList();
