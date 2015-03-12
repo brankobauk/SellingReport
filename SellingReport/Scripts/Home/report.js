@@ -22,12 +22,16 @@
         if ($(this).hasClass("percentage")) {
             if (Math.floor($(this).text()) == $(this).text() && $.isNumeric($(this).text())) {
                 var percentage = $(this).text();
+                var color = "green";
+                if ($(this).hasClass("red")) {
+                    color = "red";
+                }
                 if (percentage < 100) {
                     var item = $(this).parent().next().find('td').eq($(this).index());
-                    var bottleHeight = item.attr("data-val");
+                    var bottleHeight = item.find("img").height();
                     var height = itemHeight - (bottleHeight * percentage / 100);
 
-                    var el = '<div class="overlay" style="height:' + height + 'px;border-bottom:1px solid red;"></div>';
+                    var el = '<div class="overlay" style="height:' + height + 'px;border-bottom:1px solid '+color+';"></div>';
                     item.append(el).height(itemHeight);
                 }
             }

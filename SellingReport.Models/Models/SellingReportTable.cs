@@ -14,7 +14,6 @@ namespace SellingReport.Models.Models
         public string SoldPieces { get; set; }
         public string SoldPercentage { get; set; }
         public byte[] Image { get; set; }
-        public string BottleHeight { get; set; }
         public bool OnPlan { get; set; }
     }
 }
