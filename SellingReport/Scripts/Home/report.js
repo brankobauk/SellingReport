@@ -18,13 +18,17 @@
     });
 
     $("#main-table table tr td").each(function () {
+        var itemHeight = 200;
         if ($(this).hasClass("percentage")) {
             if (Math.floor($(this).text()) == $(this).text() && $.isNumeric($(this).text())) {
                 var percentage = $(this).text();
                 if (percentage < 100) {
-                    var height = 55 - (55 * percentage / 100);
+                    var item = $(this).parent().next().find('td').eq($(this).index());
+                    var bottleHeight = item.attr("data-val");
+                    var height = itemHeight - (bottleHeight * percentage / 100);
+
                     var el = '<div class="overlay" style="height:' + height + 'px;border-bottom:1px solid red;"></div>';
-                    $(this).parent().next().find('td').eq($(this).index()).append(el);
+                    item.append(el).height(itemHeight);
                 }
             }
         }

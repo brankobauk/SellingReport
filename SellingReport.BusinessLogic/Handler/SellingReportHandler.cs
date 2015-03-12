@@ -92,6 +92,7 @@ namespace SellingReport.BusinessLogic.Handler
                         SoldPieces = productSoldPiecesToDate.ToString(CultureInfo.InvariantCulture),
                         SoldPercentage = itemSellingPercentage.ToString(CultureInfo.InvariantCulture),
                         Image = item.Product.Image,
+                        BottleHeight = item.Product.BottleHeight.ToString(CultureInfo.InvariantCulture),
                         OnPlan = onplan
                     };
                     sellingReportTempTable.Add(sellingReport);
@@ -107,6 +108,7 @@ namespace SellingReport.BusinessLogic.Handler
                     SoldPieces = pl.Sum(c => Convert.ToInt32(c.SoldPieces)).ToString(CultureInfo.InvariantCulture),
                     SoldPercentage = (pl.Sum(c => Convert.ToInt32(c.SoldPieces)) * 100 / pl.Sum(c => Convert.ToInt32(c.MonthlyPlan))).ToString(CultureInfo.InvariantCulture),
                     Image = pl.First().Image,
+                    BottleHeight = pl.First().BottleHeight,
                     OnPlan = pl.Sum(c => Convert.ToInt32(c.MonthlyPlanToDate)) < pl.Sum(c => Convert.ToInt32(c.SoldPieces))
                 }).ToList();
             sellingReportTable.AddRange(sellingReportTempTable);

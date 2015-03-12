@@ -80,6 +80,7 @@ namespace SellingReport.Controllers
                 if (productToEdit != null)
                 {
                     productToEdit.Name = product.Name;
+                    productToEdit.BottleHeight = product.BottleHeight;
                     if (image != null)
                     {
                         productToEdit.Image = image;

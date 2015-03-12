@@ -15,6 +15,7 @@ namespace SellingReport.Models.Models
         public int ProductId { get; set; }
         public string Name { get; set; }
         public byte[] Image { get; set; }
+        public int BottleHeight { get; set; }
         private ICollection<ProductSellingPlan> ProductSellingPlans { get; set; }
         private ICollection<ProductSellingReport> ProductSellingReports { get; set; }
     }

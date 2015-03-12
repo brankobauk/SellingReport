@@ -31,14 +31,22 @@
             <label> Product Image</label>
         </div>
         <div class="editor-field">
-        
+
             @if (Model.Image != null)
             {
 
                 var base64 = Convert.ToBase64String(Model.Image);
                 var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                <img src="@imgSrc" width="100" />
+                <img src="@imgSrc" width="100"/>
             }
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleHeight)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleHeight)
+            @Html.ValidationMessageFor(model => model.BottleHeight)
         </div>
 
 

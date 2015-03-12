@@ -845,7 +845,7 @@ body.no-background {
     background-color: white;
     position:absolute;
     width:80%;
-    top:60px;
+    top:0;
     margin: 0 10%;
 }
 #main table div.overlay-top {
