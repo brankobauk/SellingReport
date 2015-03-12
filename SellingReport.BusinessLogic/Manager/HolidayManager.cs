@@ -73,7 +73,7 @@ namespace SellingReport.BusinessLogic.Manager
                     nonWorkingDays = nonWorkingDays + 1;
                 }
             }
-            return workingDaysTillNow;
+            return workingDaysTillNow - 1;
         }
 
         public List<DateTime> GetNonWorkingDays(DateTime date, List<DateTime> holidays)
