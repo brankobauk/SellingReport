@@ -71,13 +71,10 @@ namespace SellingReport.BusinessLogic.Handler
             {
                 var productSellingPlan = productSellingPlans.FirstOrDefault(p => p.ProductId == item.ProductId && p.CountryId == item.CountryId);
                 var productSellingReportToDate =
-                    productSellingReportsToDate.Where(p => p.ProductId == item.ProductId && p.CountryId == item.CountryId).ToList();
+                    productSellingReportsToDate.FirstOrDefault(p => p.ProductId == item.ProductId && p.CountryId == item.CountryId);
                 var productSoldPiecesToDate = 0;
 
-                foreach (var itemReport in productSellingReportToDate)
-                {
-                    productSoldPiecesToDate += itemReport.SoldPieces;
-                }
+                if (productSellingReportToDate != null) productSoldPiecesToDate = productSellingReportToDate.SoldPieces;
                 if (productSellingPlan != null)
                 {
                     var itemMonthlyPlan = productSellingPlan.Pieces;
