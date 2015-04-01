@@ -25,14 +25,14 @@
         </div>
         <div id="main">
             <div id="main-table">
-                <table id="top">
+                <table id="top-table">
                     @{
                         var i = 0;
                         foreach (var line in Model.SellingReportTable)
                         {
                             if (i == 9)
                             {
-                                @:</table><table id="bottom">
+                                @:</table><table id="bottom-table">
                             }
                             var cssClassPlan = "";
                             var cssClass = "";
