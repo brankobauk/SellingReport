@@ -73,7 +73,7 @@ namespace SellingReport.BusinessLogic.Manager
                     nonWorkingDays = nonWorkingDays + 1;
                 }
             }
-            return workingDaysTillNow - 1;
+            return workingDaysTillNow;
         }
 
         public List<DateTime> GetNonWorkingDays(DateTime date, List<DateTime> holidays)
@@ -81,7 +81,7 @@ namespace SellingReport.BusinessLogic.Manager
             var nonWorkingDays = new List<DateTime>();
             
             var firstDayInMonth = new DateTime(date.Year, date.Month, 1);
-            for (var i = 0; i <= DateTime.DaysInMonth(date.Year, date.Month); i++)
+            for (var i = 0; i < DateTime.DaysInMonth(date.Year, date.Month); i++)
             {
                 var isHoliday = false;
                 var nextDay = firstDayInMonth.AddDays(i);
@@ -90,7 +90,7 @@ namespace SellingReport.BusinessLogic.Manager
                 {
                     isHoliday = true;
                 }
-                if (nextDay.DayOfWeek == DayOfWeek.Saturday || nextDay.DayOfWeek == DayOfWeek.Sunday || isHoliday)
+                if (nextDay.DayOfWeek == DayOfWeek.Saturday || nextDay.DayOfWeek == DayOfWeek.Sunday || (isHoliday && nextDay.DayOfWeek != DayOfWeek.Saturday && nextDay.DayOfWeek != DayOfWeek.Sunday))
                 {
                     nonWorkingDays.Add(nextDay);
                 }
