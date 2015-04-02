@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    $("#top-table:first > tr:first").insertBefore("#bottom-table > tbody > tr:first");
     $("#main-table table").each(function () {
         var $this = $(this);
         var newrows = [];
