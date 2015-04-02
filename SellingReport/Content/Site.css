@@ -808,6 +808,7 @@ body.no-background {
     margin: 20px auto 0;
     background: none;
     position: relative;
+    float: left;
 }
 #main table {
     margin: 0;
@@ -819,7 +820,7 @@ body.no-background {
 #main-table {
      min-height: 240px;
      width: 75%;
-     display: inline-block;
+     float:left;
     padding: 15px;
     border-right: 1px solid #000000;
 }
@@ -1038,8 +1039,8 @@ div.hidden {
 }
 
 #yearly-reports {
-    width: 75%;
-    display: inline-block;
+    width: 20%;
+    float: left;
 }
 #yearly-reports .item {
     width: 172px;
@@ -1090,8 +1091,8 @@ div.hidden {
     font-size: 0.5em;
 }
 #cumulative-table {
-    width: 24%;
-    display: inline-block;
+    width: 20%;
+    float:left;
     margin: 15px;
 }
 #cumulative-table table{

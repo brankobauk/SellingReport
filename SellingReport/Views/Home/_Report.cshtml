@@ -31,7 +31,7 @@
                         foreach (var line in Model.SellingReportTable)
                         {
                             if (i > 8) {continue;}
-                            var cssClassPlan = "";
+                            string cssClassPlan;
                             var cssClass = "";
                             const string cssClassSum = "header";
                             var cssWidth = "";
@@ -79,7 +79,7 @@
                         {
                             if (k == 0 || k > 8)
                             {
-                                var cssClassPlan = "";
+                                string cssClassPlan;
                                 var cssClass = "";
                                 const string cssClassSum = "header";
                                 var cssWidth = "";
@@ -153,7 +153,7 @@
             </div>
             
        
-        if (Model.SellingReportYearlyTable != null)
+        @if (Model.SellingReportYearlyTable != null)
         {
             <div id="yearly-reports" style="width:100%;">
                 @foreach (var item in Model.SellingReportYearlyTable)
