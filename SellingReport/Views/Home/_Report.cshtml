@@ -30,15 +30,12 @@
                         var i = 0;
                         foreach (var line in Model.SellingReportTable)
                         {
-                            if (i == 9)
-                            {
-                                @:</table><table id="bottom-table">
-                            }
+                            if (i > 8) {continue;}
                             var cssClassPlan = "";
                             var cssClass = "";
                             const string cssClassSum = "header";
                             var cssWidth = "";
-                            if (i > 0)//&& i != Model.SellingReportTable.Count - 1)
+                            if (i > 0)
                             {
                                 cssClassPlan = "green";
                                 if (!line.OnPlan)
@@ -46,17 +43,6 @@
                                     cssClassPlan = "red";
                                 }
                             }
-                                //else if (i == Model.SellingReportTable.Count - 1)
-                                //{
-                                //    cssClassPlan = "green right";
-                                //    cssClass = "right";
-                                //    if (!line.OnPlan)
-                                //    {
-                                //        cssClassPlan = "red right";
-                                //        cssClass = "right";
-                                //    }
-                                //    cssClassSum = "right";
-                                //}
                             else
                             {
                                 cssClassPlan = "left";
@@ -76,13 +62,62 @@
                                         {
                                             var base64 = Convert.ToBase64String(line.Image);
                                             var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                            <img src="@imgSrc" width="50" style="position: relative;" />
+                                            <img src="@imgSrc" width="50" style="position: relative;"/>
                                         }
                                     }
                                 </td>
 
                             </tr>
                             i++;
+                        }
+                    }
+                </table>
+                <table id="bottom-table">
+                    @{
+                        var k = 0;
+                        foreach (var line in Model.SellingReportTable)
+                        {
+                            if (k == 0 || k > 8)
+                            {
+                                var cssClassPlan = "";
+                                var cssClass = "";
+                                const string cssClassSum = "header";
+                                var cssWidth = "";
+                                if (k > 0)
+                                {
+                                    cssClassPlan = "green";
+                                    if (!line.OnPlan)
+                                    {
+                                        cssClassPlan = "red";
+                                    }
+                                }
+                                else
+                                {
+                                    cssClassPlan = "left";
+                                    cssClass = "left";
+                                    cssWidth = "width:250px";
+                                }
+                                var cssClassPlanPercentage = cssClassPlan + " percentage";
+                                <tr>
+                                    <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
+                                    <td class="@cssClass">@line.MonthlyPlan</td>
+                                    <td class="@cssClass">@line.MonthlyPlanToDate</td>
+                                    <td class="@cssClassPlan">@line.SoldPieces</td>
+                                    <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
+                                    <td style="position: relative; vertical-align: bottom;">
+                                        @{
+                                            if (line.Image != null)
+                                            {
+                                                var base64 = Convert.ToBase64String(line.Image);
+                                                var imgSrc = String.Format("data:image/png;base64,{0}", base64);
+                                                <img src="@imgSrc" width="50" style="position: relative;"/>
+                                            }
+                                        }
+                                    </td>
+
+                                </tr>
+                            }
+                            k++;
                         }
                     }
                 </table>
