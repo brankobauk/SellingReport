@@ -816,7 +816,7 @@ body.no-background {
     height: 27px;
     color: black;
 }
-#main-table{ min-height: 240px;}
+#main-table{ min-height: 240px;width: 75%;display: inline-block;}
 #main table th, #main table td {
     text-align: center;
     padding: 2px;
@@ -1030,6 +1030,11 @@ body.no-background {
 div.hidden {
     display: none;
 }
+
+#yearly-reports {
+    width: 75%;
+    display: inline-block;
+}
 #yearly-reports .item {
     width: 172px;
     height: 230px;
@@ -1079,9 +1084,7 @@ div.hidden {
     font-size: 0.5em;
 }
 #cumulative-table {
-    position: absolute;
-    bottom: 20px;
-    left: 0px;
+    width: 75%;display: inline-block;
 }
 #cumulative-table table{
     background-color: #a6dbed;
