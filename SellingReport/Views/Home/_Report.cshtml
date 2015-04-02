@@ -23,11 +23,11 @@
                 </table>
             </div>
         </div>
-        <div id="main">
-            <div id="main-table">
-                <table id="top-table">
-                    @{
-                        var i = 0;
+    <div id="main">
+        <div id="main-table">
+            <table id="top-table">
+                @{
+        var i = 0;
                         foreach (var line in Model.SellingReportTable)
                         {
                             if (i > 8) {continue;}
@@ -50,30 +50,30 @@
                                 cssWidth = "width:250px";
                             }
                             var cssClassPlanPercentage = cssClassPlan + " percentage";
-                            <tr>
-                                <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
-                                <td class="@cssClass">@line.MonthlyPlan</td>
-                                <td class="@cssClass">@line.MonthlyPlanToDate</td>
-                                <td class="@cssClassPlan">@line.SoldPieces</td>
-                                <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
-                                <td style="position: relative; vertical-align: bottom;">
-                                    @{
+                    <tr>
+                        <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
+                        <td class="@cssClass">@line.MonthlyPlan</td>
+                        <td class="@cssClass">@line.MonthlyPlanToDate</td>
+                        <td class="@cssClassPlan">@line.SoldPieces</td>
+                        <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
+                        <td style="position: relative; vertical-align: bottom;">
+                            @{
                                         if (line.Image != null)
                                         {
                                             var base64 = Convert.ToBase64String(line.Image);
                                             var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                            <img src="@imgSrc" width="50" style="position: relative;"/>
+                                    <img src="@imgSrc" width="50" style="position: relative;" />
                                         }
-                                    }
-                                </td>
+                            }
+                        </td>
 
-                            </tr>
+                    </tr>
                             i++;
                         }
-                    }
-                </table>
-                <table id="bottom-table">
-                    @{
+                }
+            </table>
+            <table id="bottom-table">
+                @{
                         var k = 0;
                         foreach (var line in Model.SellingReportTable)
                         {
@@ -98,71 +98,71 @@
                                     cssWidth = "width:250px";
                                 }
                                 var cssClassPlanPercentage = cssClassPlan + " percentage";
-                                <tr>
-                                    <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
-                                    <td class="@cssClass">@line.MonthlyPlan</td>
-                                    <td class="@cssClass">@line.MonthlyPlanToDate</td>
-                                    <td class="@cssClassPlan">@line.SoldPieces</td>
-                                    <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
-                                    <td style="position: relative; vertical-align: bottom;">
-                                        @{
+                    <tr>
+                        <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
+                        <td class="@cssClass">@line.MonthlyPlan</td>
+                        <td class="@cssClass">@line.MonthlyPlanToDate</td>
+                        <td class="@cssClassPlan">@line.SoldPieces</td>
+                        <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
+                        <td style="position: relative; vertical-align: bottom;">
+                            @{
                                             if (line.Image != null)
                                             {
                                                 var base64 = Convert.ToBase64String(line.Image);
                                                 var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                                <img src="@imgSrc" width="50" style="position: relative;"/>
+                                        <img src="@imgSrc" width="50" style="position: relative;" />
                                             }
-                                        }
-                                    </td>
+                            }
+                        </td>
 
-                                </tr>
+                    </tr>
                             }
                             k++;
                         }
-                    }
-                </table>
-            </div>
-            
-            <div id="cumulative-table">
-                @{if (Model.SellingReportMonthlyTable != null)
+                }
+            </table>
+        </div>
+
+        <div id="cumulative-table">
+            @{if (Model.SellingReportMonthlyTable != null)
                 {
-                    <table>
-                        <tr>
-                            <td style="text-align: left;padding:10px 5px 2px">Plan</td>
-                            <td style="text-align: right; padding:10px 5px 2px">@Model.SellingReportMonthlyTable.MonthlyPlan€</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; padding:0 5px">Monthly Plan To Date</td>
-                            <td style="text-align: right; padding: 0 5px; ">@Model.SellingReportMonthlyTable.MonthlyPlanToDate€</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: left; padding: 2px 5px 10px">Achieved</td>
-                            <td style="text-align: right; padding: 2px 5px 10px; ">@Model.SellingReportMonthlyTable.SoldValue€</td>
-                        </tr>
-                    </table>
+                <table>
+                    <tr>
+                        <td style="text-align: left;padding:10px 5px 2px">Plan</td>
+                        <td style="text-align: right; padding:10px 5px 2px">@Model.SellingReportMonthlyTable.MonthlyPlan€</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left; padding:0 5px">Monthly Plan To Date</td>
+                        <td style="text-align: right; padding: 0 5px; ">@Model.SellingReportMonthlyTable.MonthlyPlanToDate€</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left; padding: 2px 5px 10px">Achieved</td>
+                        <td style="text-align: right; padding: 2px 5px 10px; ">@Model.SellingReportMonthlyTable.SoldValue€</td>
+                    </tr>
+                </table>
                 }
                 else
                 {
-                    <table>
-                        <tr>
-                            <td style="text-align: left;">No Data Inserted In Monthly Report Tool<br/>     For The Date Above.</td>
-                        </tr>
-                    </table>
+                <table>
+                    <tr>
+                        <td style="text-align: left;">No Data Inserted In Monthly Report Tool<br />     For The Date Above.</td>
+                    </tr>
+                </table>
                 }
-                }
-            </div>
-            
-       
+            }
+        </div>
+
+
         @if (Model.SellingReportYearlyTable != null)
         {
             <div id="yearly-reports" style="width:100%;">
                 @foreach (var item in Model.SellingReportYearlyTable)
                 {
-                    <div class="item">
-                        <div class="name">@item.Name</div>
-                        <div class="chart">
-                            <div class="margin">&nbsp;</div>
-                            @{
+                <div class="item">
+                    <div class="name">@item.Name</div>
+                    <div class="chart">
+                        <div class="margin">&nbsp;</div>
+                        @{
                     var j = 0;
                     var showAchievedArrow = false;
                     foreach (var report in item.ProductSellingYearlyReport.OrderByDescending(p => p.Month))
@@ -189,31 +189,32 @@
                             plannedLineArrow = "arrow";
                         }
 
-                        <div class="line">
-                            <div class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.Month))</div>
-                            <div class="planned-pieces" data-val="@report.PlannedValue">@report.PlannedPieces</div>
-                            <div class="chart-line @chartLineArrow @plannedLine @plannedLineArrow">&nbsp;</div>
-                            <div class="@achievedLine @achievedLineArrow">&nbsp;</div>
-                            <div class="sold-pieces" data-val="@report.SoldValue">@soldPieces</div>
-                        </div>
+                            <div class="line">
+                                <div class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.Month))</div>
+                                <div class="planned-pieces" data-val="@report.PlannedValue">@report.PlannedPieces</div>
+                                <div class="chart-line @chartLineArrow @plannedLine @plannedLineArrow">&nbsp;</div>
+                                <div class="@achievedLine @achievedLineArrow">&nbsp;</div>
+                                <div class="sold-pieces" data-val="@report.SoldValue">@soldPieces</div>
+                            </div>
                         j++;
                     }
-                    <div class="yearly-planned-ammount">&nbsp;</div>
-                                <div class="yearly-planned-ammount-value">@item.YearlyAmmount</div>
-                                <div class="monthly-planned-ammount">&nbsp;</div>
-                                <div class="monthly-planned-ammount-value">@item.PlannedAmmount</div>
-                                <div class="monthly-achieved-ammount">&nbsp;</div>
-                                <div class="monthly-achieved-ammount-value">@item.AchievedAmmount</div>
-                            }
-                        </div>
-                        <div class="clear" style="clear:both;"></div>
+                            <div class="yearly-planned-ammount">&nbsp;</div>
+                            <div class="yearly-planned-ammount-value">@item.YearlyAmmount</div>
+                            <div class="monthly-planned-ammount">&nbsp;</div>
+                            <div class="monthly-planned-ammount-value">@item.PlannedAmmount</div>
+                            <div class="monthly-achieved-ammount">&nbsp;</div>
+                            <div class="monthly-achieved-ammount-value">@item.AchievedAmmount</div>
+                        }
                     </div>
+                    <div class="clear" style="clear:both;"></div>
+                </div>
                 }
             </div>
 
             <div style="clear:both;"></div>
-    </div>
+
         }
+    </div>
         @section Scripts {
             @Scripts.Render("~/bundles/home/report")
         }
