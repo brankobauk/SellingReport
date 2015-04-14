@@ -1117,3 +1117,5 @@ div.hidden {
     background-repeat: no-repeat;
     height: 100%;}
 .monthly-achieved-ammount-value{width: 114px;position: absolute;left: 120px;font-size: 0.8em;font-weight: bold;color:#b000ff;text-align: right;padding: 3px;}
+
+.move{ cursor: move;}
