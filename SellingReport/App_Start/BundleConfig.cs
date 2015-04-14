@@ -60,7 +60,7 @@ namespace SellingReport
                    "~/Scripts/Home/general.js"
                ));
             bundles.Add(new StyleBundle("~/bundles/product").Include(
-                   "~/Scripts/Home/general.js"
+                   "~/Scripts/Product/general.js"
                ));
         }
     }
