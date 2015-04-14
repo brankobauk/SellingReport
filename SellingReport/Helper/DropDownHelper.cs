@@ -12,11 +12,15 @@ namespace SellingReport.Helper
         public IEnumerable<SelectListItem> GetMonthsListForDropDown()
         {
             var textInfo = new CultureInfo("en-US", false).TextInfo;
-                    
+            var items = new List<SelectListItem>();
+            var selFirstListItem = new SelectListItem { Value = "", Text = "--- Choose ---" };
+            items.Add(selFirstListItem);
+
+            var selItems = new List<SelectListItem>();        
             if (DateTimeFormatInfo
                 .CurrentInfo != null)
             { 
-                return DateTimeFormatInfo
+                selItems =  DateTimeFormatInfo
                     .CurrentInfo
                     .MonthNames
                     .Select((monthName, index) =>
@@ -24,10 +28,10 @@ namespace SellingReport.Helper
                            {
                                Value = (index + 1).ToString(CultureInfo.InvariantCulture),
                                Text = textInfo.ToTitleCase(monthName)
-                           }).Where(p=>p.Text != "");
+                           }).Where(p=>p.Text != "").ToList();
 
             }
-            return DateTimeFormatInfo
+            selItems =  DateTimeFormatInfo
                 .InvariantInfo
                 .MonthNames
                 .Select((monthName, index) =>
@@ -35,7 +39,9 @@ namespace SellingReport.Helper
                     {
                         Value = (index + 1).ToString(CultureInfo.InvariantCulture),
                         Text = monthName
-                    }).Where(p => p.Text != "");
+                    }).Where(p => p.Text != "").ToList();
+                items.AddRange(selItems);
+            return items;
         }
 
         public IEnumerable<SelectListItem> GetYearsListForDropDown()

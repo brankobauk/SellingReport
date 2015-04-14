@@ -804,7 +804,7 @@ body.no-background {
     background: none;
 }
 #main {
-    width: 98%;
+    width: 99   %;
     margin: 20px auto 0;
     background: none;
     position: relative;
@@ -830,7 +830,7 @@ body.no-background {
 }
 #main table td.header {
     font-weight: bold;
-}
+}   
 #main table td.red {
     color: red;
 }
@@ -1041,6 +1041,7 @@ div.hidden {
 #yearly-reports {
     width: 20%;
     float: left;
+    margin-left: 15px;
 }
 #yearly-reports .item {
     width: 172px;
@@ -1093,7 +1094,7 @@ div.hidden {
 #cumulative-table {
     width: 20%;
     float:left;
-    margin: 15px;
+    margin: 15px 0 15px 15px;
 }
 #cumulative-table table{
     background-color: #a6dbed;
