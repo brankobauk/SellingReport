@@ -59,6 +59,9 @@ namespace SellingReport
             bundles.Add(new StyleBundle("~/bundles/home").Include(
                    "~/Scripts/Home/general.js"
                ));
+            bundles.Add(new StyleBundle("~/bundles/product").Include(
+                   "~/Scripts/Home/general.js"
+               ));
         }
     }
 }
