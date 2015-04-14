@@ -321,6 +321,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ProductSellingMonthlyReport\general.js" />
     <Content Include="Scripts\ProductSellingReport\general.js" />
+    <Content Include="Scripts\Product\general.js" />
     <Content Include="Scripts\VariableHoliday\general.js" />
     <Content Include="Views\Holiday\Edit.cshtml">
       <SubType>Code</SubType>

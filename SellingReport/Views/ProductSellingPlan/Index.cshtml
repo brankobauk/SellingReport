@@ -12,63 +12,68 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
-    <tr>
-        <th>
-            Month
-        </th>
-        <th>
-            Year
-        </th>
-        <th>
-            Country
-        </th>
-        <th>
-            Product
-        </th>
-        <th>
-            Pieces
-        </th>
-        <th>
-            PlannedValue
-        </th>
-        <th></th>
-    </tr>
-
-    @if (Model != null) {
-        foreach (var item in Model) {
+    <thead>
+        <tr>
+            <th>
+                Month
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Country
+            </th>
+            <th>
+                Product
+            </th>
+            <th>
+                Pieces
+            </th>
+            <th>
+                PlannedValue
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                var textInfo = new CultureInfo("en-US", false).TextInfo;
+                @textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Month))
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pieces)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlannedValue)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProductSellingPlanId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProductSellingPlanId })
+                    </td>
+                </tr>
+            }
             <tr>
-                <td>
-                    @{
-            var textInfo = new CultureInfo("en-US", false).TextInfo;
-            @textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(item.Month))
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Year)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pieces)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlannedValue)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ProductSellingPlanId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ProductSellingPlanId })
+                <td colspan="6">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }))
+                    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
                 </td>
             </tr>
         }
-        <tr>
-            <td colspan="6">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new {page, pageSize = Model.PageSize}))
-                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
-            </td>
-        </tr>
-    }
+    </tbody>
 </table>
