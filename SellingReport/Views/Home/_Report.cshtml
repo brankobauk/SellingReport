@@ -62,7 +62,7 @@
                                         {
                                             var base64 = Convert.ToBase64String(line.Image);
                                             var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                    <img src="@imgSrc" width="50" style="position: relative;" />
+                                    <img src="@imgSrc" width="70" style="position: relative;" />
                                         }
                             }
                         </td>
@@ -71,7 +71,7 @@
                             i++;
                         }
                 }
-            </table>
+            </table><br/><br/>
             <table id="bottom-table">
                 @{
                         var k = 0;
