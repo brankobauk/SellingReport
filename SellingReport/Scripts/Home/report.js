@@ -30,7 +30,7 @@
                     var bottleHeight = item.find("img").height();
                     var height = itemHeight - (bottleHeight * percentage / 100);
                     var width = $(this).width() - 4;
-                    var el = '<div class="overlay" style="height:' + height + 'px;border-bottom:1px solid ' + color + ';width:' + width + '"></div>';
+                    var el = '<div class="overlay" style="height:' + height + 'px;border-bottom:1px solid ' + color + ';width:' + width + 'px;"></div>';
                     item.append(el).height(itemHeight);
                 }
             }
