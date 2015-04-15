@@ -826,7 +826,7 @@ body.no-background {
 }
 #main table th, #main table td {
     text-align: center;
-    padding: 2px;
+    padding: 2px 5px;
 }
 #main table td.header {
     font-weight: bold;
@@ -851,9 +851,8 @@ body.no-background {
     opacity: 0.7;
     background-color: white;
     position:absolute;
-    width:80%;
     top:0;
-    margin: 0 10%;
+    margin: 0 2px;
 }
 #main table div.overlay-top {
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";

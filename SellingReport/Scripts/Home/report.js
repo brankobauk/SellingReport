@@ -29,8 +29,8 @@
                     var item = $(this).parent().next().find('td').eq($(this).index());
                     var bottleHeight = item.find("img").height();
                     var height = itemHeight - (bottleHeight * percentage / 100);
-
-                    var el = '<div class="overlay" style="height:' + height + 'px;border-bottom:1px solid '+color+';"></div>';
+                    var width = $(this).width() - 4;
+                    var el = '<div class="overlay" style="height:' + height + 'px;border-bottom:1px solid ' + color + ';width:' + width + '"></div>';
                     item.append(el).height(itemHeight);
                 }
             }
