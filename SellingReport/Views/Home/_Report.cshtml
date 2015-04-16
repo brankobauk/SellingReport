@@ -23,199 +23,214 @@
                 </table>
             </div>
         </div>
-    <div id="main">
-        <div id="main-table">
-            <table id="top-table">
-                @{
-        var i = 0;
-                        foreach (var line in Model.SellingReportTable)
-                        {
-                            if (i > 8) {continue;}
-                            string cssClassPlan;
-                            var cssClass = "";
-                            const string cssClassSum = "header";
-                            var cssWidth = "";
-                            if (i > 0)
-                            {
-                                cssClassPlan = "green";
-                                if (!line.OnPlan)
-                                {
-                                    cssClassPlan = "red";
-                                }
-                            }
-                            else
-                            {
-                                cssClassPlan = "left";
-                                cssClass = "left";
-                                cssWidth = "width:250px";
-                            }
-                            var cssClassPlanPercentage = cssClassPlan + " percentage";
-                    <tr>
-                        <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
-                        <td class="@cssClass">@line.MonthlyPlan</td>
-                        <td class="@cssClass">@line.MonthlyPlanToDate</td>
-                        <td class="@cssClassPlan">@line.SoldPieces</td>
-                        <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
-                        <td style="position: relative; vertical-align: bottom;">
-                            @{
+        <div id="main">
+            <table style="width:100%">
+                <tr>
+                    <td width="75%">
+
+                        <div id="main-table">
+                            <table id="top-table">
+                                @{
+                                    var i = 0;
+                                    foreach (var line in Model.SellingReportTable)
+                                    {
+                                        if (i > 8)
+                                        {
+                                            continue;
+                                        }
+                                        string cssClassPlan;
+                                        var cssClass = "";
+                                        const string cssClassSum = "header";
+                                        var cssWidth = "";
+                                        if (i > 0)
+                                        {
+                                            cssClassPlan = "green";
+                                            if (!line.OnPlan)
+                                            {
+                                                cssClassPlan = "red";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            cssClassPlan = "left";
+                                            cssClass = "left";
+                                            cssWidth = "width:250px";
+                                        }
+                                        var cssClassPlanPercentage = cssClassPlan + " percentage";
+                                                <tr>
+                                                    <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
+                                                    <td class="@cssClass">@line.MonthlyPlan</td>
+                                                    <td class="@cssClass">@line.MonthlyPlanToDate</td>
+                                                    <td class="@cssClassPlan">@line.SoldPieces</td>
+                                                    <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
+                                                    <td style="position: relative; vertical-align: bottom;">
+                                                        @{
                                         if (line.Image != null)
                                         {
                                             var base64 = Convert.ToBase64String(line.Image);
                                             var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                    <img src="@imgSrc" width="70" style="position: relative;" />
+                                                <img src="@imgSrc" width="70" style="position: relative;" />
                                         }
-                            }
-                        </td>
+                                                        }
+                                                    </td>
 
-                    </tr>
-                            i++;
-                        }
-                }
-            </table><br/><br/>
-            <table id="bottom-table">
-                @{
-                        var k = 0;
-                        foreach (var line in Model.SellingReportTable)
-                        {
-                            if (k == 0 || k > 8)
-                            {
-                                string cssClassPlan;
-                                var cssClass = "";
-                                const string cssClassSum = "header";
-                                var cssWidth = "";
-                                if (k > 0)
-                                {
-                                    cssClassPlan = "green";
-                                    if (!line.OnPlan)
-                                    {
-                                        cssClassPlan = "red";
+                                                </tr>
+                                        i++;
                                     }
-                                }
-                                else
-                                {
-                                    cssClassPlan = "left";
-                                    cssClass = "left";
-                                    cssWidth = "width:250px";
-                                }
-                                var cssClassPlanPercentage = cssClassPlan + " percentage";
-                    <tr>
-                        <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
-                        <td class="@cssClass">@line.MonthlyPlan</td>
-                        <td class="@cssClass">@line.MonthlyPlanToDate</td>
-                        <td class="@cssClassPlan">@line.SoldPieces</td>
-                        <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
-                        <td style="position: relative; vertical-align: bottom;">
-                            @{
+                                                            }
+                                                        </table><br /><br />
+                                                        <table id="bottom-table">
+                                                            @{
+                                    var k = 0;
+                                    foreach (var line in Model.SellingReportTable)
+                                    {
+                                        if (k == 0 || k > 8)
+                                        {
+                                            string cssClassPlan;
+                                            var cssClass = "";
+                                            const string cssClassSum = "header";
+                                            var cssWidth = "";
+                                            if (k > 0)
+                                            {
+                                                cssClassPlan = "green";
+                                                if (!line.OnPlan)
+                                                {
+                                                    cssClassPlan = "red";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                cssClassPlan = "left";
+                                                cssClass = "left";
+                                                cssWidth = "width:250px";
+                                            }
+                                            var cssClassPlanPercentage = cssClassPlan + " percentage";
+                                                <tr>
+                                                    <td class="@cssClassSum" style="@cssWidth">@line.Name</td>
+                                                    <td class="@cssClass">@line.MonthlyPlan</td>
+                                                    <td class="@cssClass">@line.MonthlyPlanToDate</td>
+                                                    <td class="@cssClassPlan">@line.SoldPieces</td>
+                                                    <td class="@cssClassPlanPercentage">@line.SoldPercentage</td>
+                                                    <td style="position: relative; vertical-align: bottom;">
+                                                        @{
                                             if (line.Image != null)
                                             {
                                                 var base64 = Convert.ToBase64String(line.Image);
                                                 var imgSrc = String.Format("data:image/png;base64,{0}", base64);
-                                        <img src="@imgSrc" width="70" style="position: relative;" />
+                                                <img src="@imgSrc" width="70" style="position: relative;" />
                                             }
-                            }
-                        </td>
+                                                        }
+                                                    </td>
 
-                    </tr>
-                            }
-                            k++;
-                        }
-                }
+                                                </tr>
+                                        }
+                                        k++;
+                                    }
+                                }
+                            </table>
+                        </div>
+
+                    </td>
+                    <td width="25%">
+                        <div id="cumulative-table">
+                                    @{if (Model.SellingReportMonthlyTable != null)
+                                    {
+                                        <table>
+                                            <tr>
+                                                <td style="text-align: left; padding: 10px 5px 2px">Plan</td>
+                                                <td style="text-align: right; padding: 10px 5px 2px">@Model.SellingReportMonthlyTable.MonthlyPlan€</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: left; padding: 0 5px">Monthly Plan To Date</td>
+                                                <td style="text-align: right; padding: 0 5px;">@Model.SellingReportMonthlyTable.MonthlyPlanToDate€</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: left; padding: 2px 5px 10px">Achieved</td>
+                                                <td style="text-align: right; padding: 2px 5px 10px;">@Model.SellingReportMonthlyTable.SoldValue€</td>
+                                            </tr>
+                                        </table>
+                                    }
+                                    else
+                                    {
+                                        <table>
+                                            <tr>
+                                                <td style="text-align: left;">No Data Inserted In Monthly Report Tool<br /> For The Date Above.</td>
+                                            </tr>
+                                        </table>
+                                    }
+                                    }
+                                </div>
+
+
+                                @if (Model.SellingReportYearlyTable != null)
+                                {
+                                    <div id="yearly-reports">
+                                        @foreach (var item in Model.SellingReportYearlyTable)
+                                        {
+                                            <div class="item">
+                                                <div class="name">@item.Name</div>
+                                                <div class="chart">
+                                                    <div class="margin">&nbsp;</div>
+                                                    @{
+                                                        var j = 0;
+                                                        var showAchievedArrow = false;
+                                                        foreach (var report in item.ProductSellingYearlyReport.OrderByDescending(p => p.Month))
+                                                        {
+
+                                                            var soldPieces = "";
+                                                            var achievedLine = "";
+                                                            var plannedLine = "";
+                                                            var chartLineArrow = "";
+                                                            var achievedLineArrow = "";
+                                                            var plannedLineArrow = "";
+                                                            if (j == 0)
+                                                            {
+                                                                chartLineArrow = "arrow";
+                                                            }
+                                                            if (report.SoldPieces > 0)
+                                                            {
+                                                                soldPieces = report.SoldPieces.ToString(CultureInfo.InvariantCulture);
+                                                                achievedLine = "achieved-line";
+                                                                plannedLine = "chart-line-planned";
+
+                                                            }
+                                                            if (report.SoldPieces > 0 && !showAchievedArrow)
+                                                            {
+                                                                showAchievedArrow = true;
+                                                                achievedLineArrow = "arrow";
+                                                                plannedLineArrow = "arrow";
+                                                            }
+
+                                                            <div class="line">
+                                                                <div class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.Month))</div>
+                                                                <div class="planned-pieces" data-val="@report.PlannedValue">@report.PlannedPieces</div>
+                                                                <div class="chart-line @chartLineArrow @plannedLine @plannedLineArrow">&nbsp;</div>
+                                                                <div class="@achievedLine @achievedLineArrow">&nbsp;</div>
+                                                                <div class="sold-pieces" data-val="@report.SoldValue">@soldPieces</div>
+                                                            </div>
+                                                            j++;
+                                                        }
+                                                        <div class="yearly-planned-ammount">&nbsp;</div>
+                                                        <div class="yearly-planned-ammount-value">@item.YearlyAmmount</div>
+                                                        <div class="monthly-planned-ammount">&nbsp;</div>
+                                                        <div class="monthly-planned-ammount-value">@item.PlannedAmmount</div>
+                                                        <div class="monthly-achieved-ammount">&nbsp;</div>
+                                                        <div class="monthly-achieved-ammount-value">@item.AchievedAmmount</div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                }
+                                </td>
+                </tr>
             </table>
+
+            
+
+                
         </div>
-
-        <div id="cumulative-table">
-            @{if (Model.SellingReportMonthlyTable != null)
-                {
-                <table>
-                    <tr>
-                        <td style="text-align: left;padding:10px 5px 2px">Plan</td>
-                        <td style="text-align: right; padding:10px 5px 2px">@Model.SellingReportMonthlyTable.MonthlyPlan€</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left; padding:0 5px">Monthly Plan To Date</td>
-                        <td style="text-align: right; padding: 0 5px; ">@Model.SellingReportMonthlyTable.MonthlyPlanToDate€</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left; padding: 2px 5px 10px">Achieved</td>
-                        <td style="text-align: right; padding: 2px 5px 10px; ">@Model.SellingReportMonthlyTable.SoldValue€</td>
-                    </tr>
-                </table>
-                }
-                else
-                {
-                <table>
-                    <tr>
-                        <td style="text-align: left;">No Data Inserted In Monthly Report Tool<br />     For The Date Above.</td>
-                    </tr>
-                </table>
-                }
-            }
-        </div>
-
-
-        @if (Model.SellingReportYearlyTable != null)
-        {
-            <div id="yearly-reports">
-                @foreach (var item in Model.SellingReportYearlyTable)
-                {
-                <div class="item">
-                    <div class="name">@item.Name</div>
-                    <div class="chart">
-                        <div class="margin">&nbsp;</div>
-                        @{
-                    var j = 0;
-                    var showAchievedArrow = false;
-                    foreach (var report in item.ProductSellingYearlyReport.OrderByDescending(p => p.Month))
-                    {
-
-                        var soldPieces = "";
-                        var achievedLine = "";
-                        var plannedLine = "";
-                        var chartLineArrow = "";
-                        var achievedLineArrow = "";
-                        var plannedLineArrow = "";
-                        if (j == 0) { chartLineArrow = "arrow"; }
-                        if (report.SoldPieces > 0)
-                        {
-                            soldPieces = report.SoldPieces.ToString(CultureInfo.InvariantCulture);
-                            achievedLine = "achieved-line";
-                            plannedLine = "chart-line-planned";
-
-                        }
-                        if (report.SoldPieces > 0 && !showAchievedArrow)
-                        {
-                            showAchievedArrow = true;
-                            achievedLineArrow = "arrow";
-                            plannedLineArrow = "arrow";
-                        }
-
-                            <div class="line">
-                                <div class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.Month))</div>
-                                <div class="planned-pieces" data-val="@report.PlannedValue">@report.PlannedPieces</div>
-                                <div class="chart-line @chartLineArrow @plannedLine @plannedLineArrow">&nbsp;</div>
-                                <div class="@achievedLine @achievedLineArrow">&nbsp;</div>
-                                <div class="sold-pieces" data-val="@report.SoldValue">@soldPieces</div>
-                            </div>
-                        j++;
-                    }
-                            <div class="yearly-planned-ammount">&nbsp;</div>
-                            <div class="yearly-planned-ammount-value">@item.YearlyAmmount</div>
-                            <div class="monthly-planned-ammount">&nbsp;</div>
-                            <div class="monthly-planned-ammount-value">@item.PlannedAmmount</div>
-                            <div class="monthly-achieved-ammount">&nbsp;</div>
-                            <div class="monthly-achieved-ammount-value">@item.AchievedAmmount</div>
-                        }
-                    </div>
-                    <div class="clear" style="clear:both;"></div>
-                </div>
-                }
-                <div style="clear:both;"></div>
-            </div>
-
-            <div style="clear:both;"></div>
-
-        }
-    </div>
         @section Scripts {
             @Scripts.Render("~/bundles/home/report")
         }
