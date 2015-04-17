@@ -1087,9 +1087,7 @@ div.hidden {
     font-size: 0.5em;
 }
 #cumulative-table {
-    width: 90%;
-    float:left;
-    margin: 15px 5%;
+    width: 100%;
 }
 #cumulative-table table{
     background-color: #a6dbed;
