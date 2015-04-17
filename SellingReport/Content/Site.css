@@ -1094,21 +1094,21 @@ div.hidden {
     border: 1px solid #000000;
 }
 
-.yearly-planned-ammount{width: 140px;text-align: left;position: absolute;left: -28px;background: url(/Content/themes/Images/arrow-orange.png);
+.yearly-planned-ammount{width: 140px;text-align: left;position: absolute;background: url(/Content/themes/Images/arrow-orange.png);
     background-position: top right;
     background-repeat: no-repeat;
     height: 100%;}
-.yearly-planned-ammount-value{width: 140px;text-align: left;position: absolute;left: -28px;font-size: 0.8em;font-weight: bold;color:#ffbe92;padding: 3px;}
-.monthly-planned-ammount{width: 140px;text-align: left;position: absolute;left: -28px;background: url(/Content/themes/Images/arrow-orangine.png);
+.yearly-planned-ammount-value{width: 140px;text-align: left;position: absolute;font-size: 0.8em;font-weight: bold;color:#ffbe92;padding: 3px;}
+.monthly-planned-ammount{width: 140px;text-align: left;position: absolute;background: url(/Content/themes/Images/arrow-orangine.png);
     background-position: top right;
     background-repeat: no-repeat;
     height: 100%;}
-.monthly-planned-ammount-value{width: 140px;text-align: left;position: absolute;left: -28px;font-size: 0.8em;font-weight: bold;color:#ff6600;padding: 3px;}
+.monthly-planned-ammount-value{width: 140px;text-align: left;position: absolute;font-size: 0.8em;font-weight: bold;color:#ff6600;padding: 3px;}
 .monthly-achieved-ammount{width: 120px;
-                          position: absolute;left: 120px;background: url(/Content/themes/Images/arrow-violet.png);
+                          position: absolute;left: 147px;background: url(/Content/themes/Images/arrow-violet.png);
     background-position: top left;
     background-repeat: no-repeat;
     height: 100%;}
-.monthly-achieved-ammount-value{width: 114px;position: absolute;left: 120px;font-size: 0.8em;font-weight: bold;color:#b000ff;text-align: right;padding: 3px;}
+.monthly-achieved-ammount-value{width: 114px;position: absolute;left: 147px;font-size: 0.8em;font-weight: bold;color:#b000ff;text-align: right;padding: 3px;}
 
 .move{ cursor: move;}
