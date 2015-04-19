@@ -1054,18 +1054,18 @@ div.hidden {
     float: left;
 }
 #yearly-reports .chart .margin{
-    width: 172px;
+    width: 192px;
     float: left;
 }
 #yearly-reports .line {
-    width: 172px;
+    width: 192px;
     float: left;
     padding-left: 27px;
 }
 #yearly-reports .line .month{
-    width: 60px;
+    width: 90px;
     float: left;
-    font-size: 0.8em;
+    font-size: 0.7em;
     text-align: right
 }
 #yearly-reports .line .planned-pieces{
