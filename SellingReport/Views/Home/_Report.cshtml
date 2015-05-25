@@ -172,50 +172,53 @@
                                                 <div class="chart">
                                                     <div class="margin">&nbsp;</div>
                                                     @{
-                                                        var j = 0;
-                                                        var showAchievedArrow = false;
-                                                        foreach (var report in item.ProductSellingYearlyReport.OrderByDescending(p => p.Month))
-                                                        {
+                                            var j = 0;
+                                            var showAchievedArrow = false;
 
-                                                            var soldPieces = "";
-                                                            var achievedLine = "";
-                                                            var plannedLine = "";
-                                                            var chartLineArrow = "";
-                                                            var achievedLineArrow = "";
-                                                            var plannedLineArrow = "";
-                                                            if (j == 0)
-                                                            {
-                                                                chartLineArrow = "arrow";
-                                                            }
-                                                            if (report.SoldPieces > 0)
-                                                            {
-                                                                soldPieces = report.SoldPieces.ToString(CultureInfo.InvariantCulture);
-                                                                achievedLine = "achieved-line";
-                                                                plannedLine = "chart-line-planned";
+                                            <table>
+                                                @foreach (var report in item.ProductSellingYearlyReport.OrderByDescending(p => p.Month))
+                                                {
+                                                    var soldPieces = "";
+                                                    var achievedLine = "";
+                                                    var plannedLine = "";
+                                                    var chartLineArrow = "";
+                                                    var achievedLineArrow = "";
+                                                    var plannedLineArrow = "";
+                                                    if (j == 0)
+                                                    {
+                                                        chartLineArrow = "arrow";
+                                                    }
+                                                    if (report.SoldPieces > 0)
+                                                    {
+                                                        soldPieces = report.SoldPieces.ToString(CultureInfo.InvariantCulture);
+                                                        achievedLine = "achieved-line";
+                                                        plannedLine = "chart-line-planned";
 
-                                                            }
-                                                            if (report.SoldPieces > 0 && !showAchievedArrow)
-                                                            {
-                                                                showAchievedArrow = true;
-                                                                achievedLineArrow = "arrow";
-                                                                plannedLineArrow = "arrow";
-                                                            }
-
-                                                            <div class="line">
-                                                                <div class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.Month))</div>
-                                                                <div class="planned-pieces" data-val="@report.PlannedValue">@report.PlannedPieces</div>
-                                                                <div class="chart-line @chartLineArrow @plannedLine @plannedLineArrow">&nbsp;</div>
-                                                                <div class="@achievedLine @achievedLineArrow">&nbsp;</div>
-                                                                <div class="sold-pieces" data-val="@report.SoldValue">@soldPieces</div>
-                                                            </div>
-                                                            j++;
-                                                        }
-                                                        <div class="yearly-planned-ammount">&nbsp;</div>
-                                                        <div class="yearly-planned-ammount-value">@item.YearlyAmmount</div>
-                                                        <div class="monthly-planned-ammount">&nbsp;</div>
-                                                        <div class="monthly-planned-ammount-value">@item.PlannedAmmount</div>
-                                                        <div class="monthly-achieved-ammount">&nbsp;</div>
-                                                        <div class="monthly-achieved-ammount-value">@item.AchievedAmmount</div>
+                                                    }
+                                                    if (report.SoldPieces > 0 && !showAchievedArrow)
+                                                    {
+                                                        showAchievedArrow = true;
+                                                        achievedLineArrow = "arrow";
+                                                        plannedLineArrow = "arrow";
+                                                    }
+                                                    <tr class="line">
+                                                        <td class="month">@textInfo.ToTitleCase(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(report.Month))</td>
+                                                        <td class="planned-pieces" data-val="@report.PlannedValue">@report.PlannedPieces</td>
+                                                        <td class="chart-line @chartLineArrow @plannedLine @plannedLineArrow">&nbsp;></td>
+                                                        <td class="@achievedLine @achievedLineArrow">&nbsp;</td>
+                                                        <td class="sold-pieces" data-val="@report.SoldValue">@soldPieces</td>
+                                                    </tr>
+                                                    j++;
+                                                }
+                                            </table>
+                                            <div class="yearly-planned-ammount">&nbsp;</div>
+                                            <div class="yearly-planned-ammount-value">@item.YearlyAmmount</div>
+                                            <div class="monthly-planned-ammount">&nbsp;</div>
+                                            <div class="monthly-planned-ammount-value">@item.PlannedAmmount</div>
+                                            <div class="monthly-achieved-ammount">&nbsp;</div>
+                                            <div class="monthly-achieved-ammount-value">@item.AchievedAmmount</div>
+                                            
+                                                        
                                                     }
                                                 </div>
                                                 <div class="clear" style="clear: both;"></div>
